@@ -42,6 +42,9 @@ public class Artist extends LibraryEntry implements UserVisitable {
     private double merchRevenue;
     @Getter
     private double songRevenue;
+    @Getter
+    @Setter
+    private ArrayList<String> subscribers;
 
 
     public Artist(final String name, final int age, final String city, final String userType) {
@@ -56,6 +59,7 @@ public class Artist extends LibraryEntry implements UserVisitable {
         merches = new ArrayList<>();
         merchRevenue = 0;
         songRevenue = 0;
+        subscribers = new ArrayList<>();
     }
 
     /**
@@ -149,6 +153,24 @@ public class Artist extends LibraryEntry implements UserVisitable {
         List<Album> albumsToAdd = Admin.getAlbums();
         albumsToAdd.add(album);
         Admin.updateAlbumList(albumsToAdd);
+
+
+        //NEW
+        for (User user1 : Admin.getUsers()) {
+            if (!artist.getSubscribers().isEmpty()) {
+                for (String name : artist.getSubscribers()) {
+                    if (user1.getUsername().equals(name)) {
+                        ObjectNode notification = objectMapper.createObjectNode();
+                        notification.put("name", "New Album");
+                        notification.put("description", "New Album from " + commandInput.getUsername() + ".");
+                        ArrayList<ObjectNode> notifications = new ArrayList<>();
+                        notifications = user1.getNotifications();
+                        notifications.add(notification);
+                        user1.setNotifications(notifications);
+                    }
+                }
+            }
+        }
         return commandInput.getUsername() + " has added new album successfully.";
     }
 
@@ -192,8 +214,10 @@ public class Artist extends LibraryEntry implements UserVisitable {
             Player player = User.getPlayerInstance(user1);
             PlayerSource source = Player.getPlayerSourceInstance(player);
             if (source != null) {
-                if (source.getAudioCollection().getName().equals(commandInput.getName())) {
-                    return commandInput.getUsername() + " can't delete this album.";
+                if (source.getAudioCollection() != null) {
+                    if (source.getAudioCollection().getName().equals(commandInput.getName())) {
+                        return commandInput.getUsername() + " can't delete this album.";
+                    }
                 }
             }
         }
@@ -262,6 +286,24 @@ public class Artist extends LibraryEntry implements UserVisitable {
         Artist artistFound = Admin.getArtist(commandInput.getUsername());
         artistFound.getEvents().add(new Event(commandInput.getUsername(), commandInput.getName(),
                 commandInput.getDescription(), commandInput.getDate()));
+
+        //NEW
+        for (User user1 : Admin.getUsers()) {
+            if (!artistFound.getSubscribers().isEmpty()) {
+                for (String name : artistFound.getSubscribers()) {
+                    if (user1.getUsername().equals(name)) {
+                        ObjectNode notification = objectMapper.createObjectNode();
+                        notification.put("name", "New Event");
+                        notification.put("description", "New Event from " + commandInput.getUsername() + ".");
+                        ArrayList<ObjectNode> notifications = new ArrayList<>();
+                        notifications = user1.getNotifications();
+                        notifications.add(notification);
+                        user1.setNotifications(notifications);
+                    }
+                }
+            }
+        }
+
         return commandInput.getUsername() + " has added new event successfully.";
 
     }
@@ -335,6 +377,23 @@ public class Artist extends LibraryEntry implements UserVisitable {
         }
         artistFound.getMerches().add(new Merch(commandInput.getUsername(), commandInput.getName(),
                 commandInput.getDescription(), commandInput.getPrice()));
+
+        //NEW
+        for (User user1 : Admin.getUsers()) {
+            if (!artistFound.getSubscribers().isEmpty()) {
+                for (String name : artistFound.getSubscribers()) {
+                    if (user1.getUsername().equals(name)) {
+                        ObjectNode notification = objectMapper.createObjectNode();
+                        notification.put("name", "New Merchandise");
+                        notification.put("description", "New Merchandise from " + commandInput.getUsername() + ".");
+                        ArrayList<ObjectNode> notifications = new ArrayList<>();
+                        notifications = user1.getNotifications();
+                        notifications.add(notification);
+                        user1.setNotifications(notifications);
+                    }
+                }
+            }
+        }
         return commandInput.getUsername() + " has added new merchandise successfully.";
     }
 

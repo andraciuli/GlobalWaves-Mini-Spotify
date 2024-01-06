@@ -219,145 +219,201 @@
   "timestamp" : 1,
   "message" : "The username The Police has been added successfully."
 }, {
+  "command" : "addAlbum",
+  "user" : "Radiohead",
+  "timestamp" : 1,
+  "message" : "Radiohead has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Radiohead",
+  "timestamp" : 1,
+  "message" : "Radiohead has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Radiohead",
+  "timestamp" : 1,
+  "message" : "Radiohead has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Radiohead",
+  "timestamp" : 1,
+  "message" : "Radiohead has added new album successfully."
+}, {
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "The Bends" ]
+}, {
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 10,
+  "message" : "Successfully selected The Bends."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "jack29",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "OK Computer" ]
+}, {
+  "command" : "select",
+  "user" : "jack29",
+  "timestamp" : 10,
+  "message" : "Successfully selected OK Computer."
+}, {
+  "command" : "load",
+  "user" : "jack29",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 10,
   "message" : "Search returned 1 results",
-  "results" : [ "Chuck Berry" ]
+  "results" : [ "Pablo Honey" ]
 }, {
   "command" : "select",
   "user" : "david27",
   "timestamp" : 10,
-  "message" : "Successfully selected Chuck Berry's page."
+  "message" : "Successfully selected Pablo Honey."
+}, {
+  "command" : "load",
+  "user" : "david27",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "henry26",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "Reckoner" ]
+}, {
+  "command" : "select",
+  "user" : "henry26",
+  "timestamp" : 10,
+  "message" : "Successfully selected Reckoner."
+}, {
+  "command" : "load",
+  "user" : "henry26",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "irene33",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "Just" ]
+}, {
+  "command" : "select",
+  "user" : "irene33",
+  "timestamp" : 10,
+  "message" : "Successfully selected Just."
+}, {
+  "command" : "load",
+  "user" : "irene33",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "emily30",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "Exit Music (for a Film)" ]
+}, {
+  "command" : "select",
+  "user" : "emily30",
+  "timestamp" : 10,
+  "message" : "Successfully selected Exit Music (for a Film)."
+}, {
+  "command" : "load",
+  "user" : "emily30",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "grace25",
+  "timestamp" : 10,
+  "message" : "Search returned 1 results",
+  "results" : [ "Exit Music (for a Film)" ]
+}, {
+  "command" : "select",
+  "user" : "grace25",
+  "timestamp" : 10,
+  "message" : "Successfully selected Exit Music (for a Film)."
+}, {
+  "command" : "load",
+  "user" : "grace25",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "henry26",
+  "timestamp" : 319,
+  "message" : "Search returned 1 results",
+  "results" : [ "Subterranean Homesick Alien" ]
+}, {
+  "command" : "select",
+  "user" : "henry26",
+  "timestamp" : 319,
+  "message" : "Successfully selected Subterranean Homesick Alien."
+}, {
+  "command" : "load",
+  "user" : "henry26",
+  "timestamp" : 319,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
   "user" : "david27",
-  "timestamp" : 22,
+  "timestamp" : 1380,
   "message" : "Search returned 1 results",
-  "results" : [ "Elton John" ]
+  "results" : [ "Weird Fishes/Arpeggi" ]
 }, {
   "command" : "select",
   "user" : "david27",
-  "timestamp" : 22,
-  "message" : "Successfully selected Elton John's page."
+  "timestamp" : 1380,
+  "message" : "Successfully selected Weird Fishes/Arpeggi."
+}, {
+  "command" : "load",
+  "user" : "david27",
+  "timestamp" : 1380,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 92,
+  "user" : "jack29",
+  "timestamp" : 1624,
   "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
+  "results" : [ "In Rainbows" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 92,
-  "message" : "Successfully selected Fleetwood Mac's page."
+  "user" : "jack29",
+  "timestamp" : 1624,
+  "message" : "Successfully selected In Rainbows."
+}, {
+  "command" : "load",
+  "user" : "jack29",
+  "timestamp" : 1624,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 115,
+  "user" : "jack29",
+  "timestamp" : 2995,
   "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
+  "results" : [ "(Nice Dream)" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 115,
-  "message" : "Successfully selected Fleetwood Mac's page."
+  "user" : "jack29",
+  "timestamp" : 2995,
+  "message" : "Successfully selected (Nice Dream)."
 }, {
-  "command" : "search",
-  "user" : "david27",
-  "timestamp" : 144,
-  "message" : "Search returned 1 results",
-  "results" : [ "David Bowie" ]
-}, {
-  "command" : "select",
-  "user" : "david27",
-  "timestamp" : 144,
-  "message" : "Successfully selected David Bowie's page."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 913,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1063,
-  "message" : "Fleetwood Mac has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1318,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1468,
-  "message" : "Fleetwood Mac has added new album successfully."
-}, {
-  "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1533,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 2910,
-  "message" : "Chuck Berry doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 3060,
-  "message" : "Chuck Berry has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3530,
-  "message" : "Fleetwood Mac deleted the album successfully."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3680,
-  "message" : "Fleetwood Mac has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4771,
-  "message" : "Chuck Berry doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4921,
-  "message" : "Chuck Berry has added new album successfully."
-}, {
-  "command" : "addMerch",
-  "user" : "Elton John",
-  "timestamp" : 5148,
-  "message" : "Elton John has added new merchandise successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5444,
-  "message" : "David Bowie doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5594,
-  "message" : "David Bowie has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7348,
-  "message" : "David Bowie doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7498,
-  "message" : "David Bowie has added new album successfully."
-}, {
-  "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 8078,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
+  "command" : "load",
+  "user" : "jack29",
+  "timestamp" : 2995,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "endProgram",
   "result" : { }

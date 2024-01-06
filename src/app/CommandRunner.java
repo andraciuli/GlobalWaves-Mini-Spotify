@@ -786,4 +786,22 @@ public class CommandRunner {
         objectNode.putPOJO("result", Admin.endProgram());
         return objectNode;
     }
+
+    public static ObjectNode subscribe(CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "subscribe");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.put("message", User.subscribe(commandInput));
+        return objectNode;
+    }
+
+    public static ObjectNode getNotifications(CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "getNotifications");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("notifications", User.showNotifications(commandInput));
+        return objectNode;
+    }
 }

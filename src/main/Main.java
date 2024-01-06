@@ -72,8 +72,8 @@ public final class Main {
                               final String filePath2) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         LibraryInput library = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + "library/library.json"), LibraryInput.class);
-        //CommandInput[] commands = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + filePath1), CommandInput[].class);
-        CommandInput[] commands = objectMapper.readValue(new File("input/test07_etapa3_notifications_simple.json"), CommandInput[].class);
+        CommandInput[] commands = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + filePath1), CommandInput[].class);
+        //CommandInput[] commands = objectMapper.readValue(new File("input/test08_etapa3_notifications_more.json"), CommandInput[].class);
         ArrayNode outputs = objectMapper.createArrayNode();
 
         Admin.setUsers(library.getUsers());
@@ -129,6 +129,8 @@ public final class Main {
                 case "getTop5Artists" -> outputs.add(CommandRunner.getTop5Artists(command));
                 case "buyMerch" -> outputs.add(CommandRunner.buyMerch(command));
                 case "seeMerch" -> outputs.add(CommandRunner.seeMerch(command));
+                case "subscribe" -> outputs.add(CommandRunner.subscribe(command));
+                case "getNotifications" -> outputs.add(CommandRunner.getNotifications(command));
                 default -> System.out.println("Invalid command " + commandName);
             }
         }

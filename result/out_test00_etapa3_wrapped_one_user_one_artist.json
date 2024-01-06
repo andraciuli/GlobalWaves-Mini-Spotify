@@ -219,145 +219,217 @@
   "timestamp" : 1,
   "message" : "The username The Police has been added successfully."
 }, {
+  "command" : "addAlbum",
+  "user" : "Pink Floyd",
+  "timestamp" : 1,
+  "message" : "Pink Floyd has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Pink Floyd",
+  "timestamp" : 1,
+  "message" : "Pink Floyd has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Pink Floyd",
+  "timestamp" : 1,
+  "message" : "Pink Floyd has added new album successfully."
+}, {
+  "command" : "addAlbum",
+  "user" : "Pink Floyd",
+  "timestamp" : 1,
+  "message" : "Pink Floyd has added new album successfully."
+}, {
   "command" : "search",
-  "user" : "david27",
+  "user" : "alice22",
   "timestamp" : 10,
   "message" : "Search returned 1 results",
-  "results" : [ "Chuck Berry" ]
+  "results" : [ "Wish You Were Here" ]
 }, {
   "command" : "select",
-  "user" : "david27",
+  "user" : "alice22",
   "timestamp" : 10,
-  "message" : "Successfully selected Chuck Berry's page."
+  "message" : "Successfully selected Wish You Were Here."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 10,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 22,
+  "user" : "alice22",
+  "timestamp" : 1255,
   "message" : "Search returned 1 results",
-  "results" : [ "Elton John" ]
+  "results" : [ "The Wall" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 22,
-  "message" : "Successfully selected Elton John's page."
+  "user" : "alice22",
+  "timestamp" : 1255,
+  "message" : "Successfully selected The Wall."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 1255,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 92,
+  "user" : "alice22",
+  "timestamp" : 4030,
   "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
+  "results" : [ "The Dark Side of the Moon" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 92,
-  "message" : "Successfully selected Fleetwood Mac's page."
+  "user" : "alice22",
+  "timestamp" : 4030,
+  "message" : "Successfully selected The Dark Side of the Moon."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 4030,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 115,
+  "user" : "alice22",
+  "timestamp" : 5683,
   "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
+  "results" : [ "The Division Bell" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 115,
-  "message" : "Successfully selected Fleetwood Mac's page."
+  "user" : "alice22",
+  "timestamp" : 5683,
+  "message" : "Successfully selected The Division Bell."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 5683,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 144,
+  "user" : "alice22",
+  "timestamp" : 10792,
   "message" : "Search returned 1 results",
-  "results" : [ "David Bowie" ]
+  "results" : [ "Take It Back" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 144,
-  "message" : "Successfully selected David Bowie's page."
+  "user" : "alice22",
+  "timestamp" : 10792,
+  "message" : "Successfully selected Take It Back."
 }, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 913,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 10792,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1063,
-  "message" : "Fleetwood Mac has added new album successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11102,
+  "message" : "Search returned 1 results",
+  "results" : [ "Wish You Were Here" ]
 }, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1318,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11102,
+  "message" : "Successfully selected Wish You Were Here."
 }, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1468,
-  "message" : "Fleetwood Mac has added new album successfully."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11102,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1533,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11246,
+  "message" : "Search returned 1 results",
+  "results" : [ "Young Lust" ]
 }, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 2910,
-  "message" : "Chuck Berry doesn't have an album with the given name."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11246,
+  "message" : "Successfully selected Young Lust."
 }, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 3060,
-  "message" : "Chuck Berry has added new album successfully."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11246,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3530,
-  "message" : "Fleetwood Mac deleted the album successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11340,
+  "message" : "Search returned 1 results",
+  "results" : [ "Any Colour You Like" ]
 }, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3680,
-  "message" : "Fleetwood Mac has added new album successfully."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11340,
+  "message" : "Successfully selected Any Colour You Like."
 }, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4771,
-  "message" : "Chuck Berry doesn't have an album with the given name."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11340,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4921,
-  "message" : "Chuck Berry has added new album successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11585,
+  "message" : "Search returned 1 results",
+  "results" : [ "Goodbye Cruel World" ]
 }, {
-  "command" : "addMerch",
-  "user" : "Elton John",
-  "timestamp" : 5148,
-  "message" : "Elton John has added new merchandise successfully."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11585,
+  "message" : "Successfully selected Goodbye Cruel World."
 }, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5444,
-  "message" : "David Bowie doesn't have an album with the given name."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11585,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5594,
-  "message" : "David Bowie has added new album successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11648,
+  "message" : "Search returned 1 results",
+  "results" : [ "Coming Back to Life" ]
 }, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7348,
-  "message" : "David Bowie doesn't have an album with the given name."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11648,
+  "message" : "Successfully selected Coming Back to Life."
 }, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7498,
-  "message" : "David Bowie has added new album successfully."
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11648,
+  "message" : "Playback loaded successfully."
 }, {
-  "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 8078,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 11837,
+  "message" : "Search returned 1 results",
+  "results" : [ "Marooned" ]
+}, {
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 11837,
+  "message" : "Successfully selected Marooned."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 11837,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 12393,
+  "message" : "Search returned 1 results",
+  "results" : [ "Another Brick in the Wall Part 1" ]
+}, {
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 12393,
+  "message" : "Successfully selected Another Brick in the Wall Part 1."
+}, {
+  "command" : "load",
+  "user" : "alice22",
+  "timestamp" : 12393,
+  "message" : "Playback loaded successfully."
 }, {
   "command" : "endProgram",
   "result" : { }

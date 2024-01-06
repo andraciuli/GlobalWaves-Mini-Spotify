@@ -219,146 +219,159 @@
   "timestamp" : 1,
   "message" : "The username The Police has been added successfully."
 }, {
+  "command" : "addMerch",
+  "user" : "Elton John",
+  "timestamp" : 1699,
+  "message" : "Elton John has added new merchandise successfully."
+}, {
+  "command" : "search",
+  "user" : "emily30",
+  "timestamp" : 2137,
+  "message" : "Search returned 1 results",
+  "results" : [ "Nothing But Thieves" ]
+}, {
+  "command" : "select",
+  "user" : "emily30",
+  "timestamp" : 2137,
+  "message" : "Successfully selected Nothing But Thieves's page."
+}, {
+  "command" : "buyMerch",
+  "user" : "emily30",
+  "timestamp" : 2137,
+  "message" : "The merch Nothing But Thieves Vinyl Record doesn't exist."
+}, {
   "command" : "search",
   "user" : "david27",
-  "timestamp" : 10,
+  "timestamp" : 2271,
   "message" : "Search returned 1 results",
-  "results" : [ "Chuck Berry" ]
+  "results" : [ "Whitney Houston" ]
 }, {
   "command" : "select",
   "user" : "david27",
-  "timestamp" : 10,
-  "message" : "Successfully selected Chuck Berry's page."
+  "timestamp" : 2271,
+  "message" : "Successfully selected Whitney Houston's page."
+}, {
+  "command" : "buyMerch",
+  "user" : "david27",
+  "timestamp" : 2271,
+  "message" : "The merch Whitney Houston Album doesn't exist."
+}, {
+  "command" : "seeMerch",
+  "user" : "emily30",
+  "timestamp" : 2287,
+  "result" : [ ]
+}, {
+  "command" : "seeMerch",
+  "user" : "david27",
+  "timestamp" : 2421,
+  "result" : [ ]
+}, {
+  "command" : "addMerch",
+  "user" : "Led Zeppelin",
+  "timestamp" : 2888,
+  "message" : "Led Zeppelin has added new merchandise successfully."
 }, {
   "command" : "search",
-  "user" : "david27",
-  "timestamp" : 22,
+  "user" : "grace25",
+  "timestamp" : 3155,
+  "message" : "Search returned 1 results",
+  "results" : [ "Nothing But Thieves" ]
+}, {
+  "command" : "select",
+  "user" : "grace25",
+  "timestamp" : 3155,
+  "message" : "Successfully selected Nothing But Thieves's page."
+}, {
+  "command" : "buyMerch",
+  "user" : "grace25",
+  "timestamp" : 3155,
+  "message" : "The merch Nothing But Thieves Vinyl Record doesn't exist."
+}, {
+  "command" : "seeMerch",
+  "user" : "grace25",
+  "timestamp" : 3305,
+  "result" : [ ]
+}, {
+  "command" : "addMerch",
+  "user" : "Nothing But Thieves",
+  "timestamp" : 4175,
+  "message" : "Nothing But Thieves has added new merchandise successfully."
+}, {
+  "command" : "addMerch",
+  "user" : "Madonna",
+  "timestamp" : 4553,
+  "message" : "Madonna has added new merchandise successfully."
+}, {
+  "command" : "addMerch",
+  "user" : "Whitney Houston",
+  "timestamp" : 4563,
+  "message" : "Whitney Houston has added new merchandise successfully."
+}, {
+  "command" : "search",
+  "user" : "jack29",
+  "timestamp" : 4721,
   "message" : "Search returned 1 results",
   "results" : [ "Elton John" ]
 }, {
   "command" : "select",
-  "user" : "david27",
-  "timestamp" : 22,
+  "user" : "jack29",
+  "timestamp" : 4721,
   "message" : "Successfully selected Elton John's page."
 }, {
-  "command" : "search",
-  "user" : "david27",
-  "timestamp" : 92,
-  "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
+  "command" : "buyMerch",
+  "user" : "jack29",
+  "timestamp" : 4721,
+  "message" : "jack29 has added new merch successfully."
 }, {
-  "command" : "select",
-  "user" : "david27",
-  "timestamp" : 92,
-  "message" : "Successfully selected Fleetwood Mac's page."
-}, {
-  "command" : "search",
-  "user" : "david27",
-  "timestamp" : 115,
-  "message" : "Search returned 1 results",
-  "results" : [ "Fleetwood Mac" ]
-}, {
-  "command" : "select",
-  "user" : "david27",
-  "timestamp" : 115,
-  "message" : "Successfully selected Fleetwood Mac's page."
-}, {
-  "command" : "search",
-  "user" : "david27",
-  "timestamp" : 144,
-  "message" : "Search returned 1 results",
-  "results" : [ "David Bowie" ]
-}, {
-  "command" : "select",
-  "user" : "david27",
-  "timestamp" : 144,
-  "message" : "Successfully selected David Bowie's page."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 913,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1063,
-  "message" : "Fleetwood Mac has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1318,
-  "message" : "Fleetwood Mac doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1468,
-  "message" : "Fleetwood Mac has added new album successfully."
+  "command" : "seeMerch",
+  "user" : "jack29",
+  "timestamp" : 4871,
+  "result" : [ "Elton John Vinyl Record" ]
 }, {
   "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 1533,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 2910,
-  "message" : "Chuck Berry doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 3060,
-  "message" : "Chuck Berry has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3530,
-  "message" : "Fleetwood Mac deleted the album successfully."
-}, {
-  "command" : "addAlbum",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 3680,
-  "message" : "Fleetwood Mac has added new album successfully."
-}, {
-  "command" : "removeAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4771,
-  "message" : "Chuck Berry doesn't have an album with the given name."
-}, {
-  "command" : "addAlbum",
-  "user" : "Chuck Berry",
-  "timestamp" : 4921,
-  "message" : "Chuck Berry has added new album successfully."
+  "user" : "Bruce Springsteen",
+  "timestamp" : 6557,
+  "message" : "Bruce Springsteen has added new merchandise successfully."
 }, {
   "command" : "addMerch",
-  "user" : "Elton John",
-  "timestamp" : 5148,
-  "message" : "Elton John has added new merchandise successfully."
+  "user" : "Nirvana",
+  "timestamp" : 8385,
+  "message" : "Nirvana has added new merchandise successfully."
 }, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5444,
-  "message" : "David Bowie doesn't have an album with the given name."
+  "command" : "search",
+  "user" : "alice22",
+  "timestamp" : 9720,
+  "message" : "Search returned 1 results",
+  "results" : [ "Nothing But Thieves" ]
 }, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 5594,
-  "message" : "David Bowie has added new album successfully."
+  "command" : "select",
+  "user" : "alice22",
+  "timestamp" : 9720,
+  "message" : "Successfully selected Nothing But Thieves's page."
 }, {
-  "command" : "removeAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7348,
-  "message" : "David Bowie doesn't have an album with the given name."
+  "command" : "buyMerch",
+  "user" : "alice22",
+  "timestamp" : 9720,
+  "message" : "alice22 has added new merch successfully."
 }, {
-  "command" : "addAlbum",
-  "user" : "David Bowie",
-  "timestamp" : 7498,
-  "message" : "David Bowie has added new album successfully."
-}, {
-  "command" : "addMerch",
-  "user" : "Fleetwood Mac",
-  "timestamp" : 8078,
-  "message" : "Fleetwood Mac has added new merchandise successfully."
+  "command" : "seeMerch",
+  "user" : "alice22",
+  "timestamp" : 9870,
+  "result" : [ "Nothing But Thieves Vinyl Record" ]
 }, {
   "command" : "endProgram",
-  "result" : { }
+  "result" : {
+    "Nothing But Thieves" : {
+      "merchRevenue" : 2500.0,
+      "songRevenue" : 0.0,
+      "ranking" : 1,
+      "mostProfitableSong" : "N/A"
+    },
+    "Elton John" : {
+      "merchRevenue" : 1400.0,
+      "songRevenue" : 0.0,
+      "ranking" : 2,
+      "mostProfitableSong" : "N/A"
+    }
+  }
 } ]

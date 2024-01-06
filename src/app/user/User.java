@@ -1,6 +1,7 @@
 package app.user;
 
 import app.Admin;
+import app.CommandRunner;
 import app.audio.Collections.Podcast;
 import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
@@ -16,6 +17,7 @@ import app.searchBar.Filters;
 import app.searchBar.SearchBar;
 import app.utils.Enums;
 import app.utils.UserVisitable;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
 import lombok.Getter;
 import lombok.Setter;
@@ -63,6 +65,11 @@ public class User implements UserVisitable {
     private String select;
     @Getter
     private ArrayList<String> merches;
+    @Getter
+    private ArrayList<String> subscribedTo;
+    @Getter
+    @Setter
+    private ArrayList<ObjectNode> notifications = new ArrayList<>();
 
     /**
      * Instantiates a new User.
@@ -88,6 +95,8 @@ public class User implements UserVisitable {
         lastSearchType = new String();
         podcasts = new ArrayList<>();
         merches = new ArrayList<>();
+        subscribedTo = new ArrayList<>();
+        notifications = new ArrayList<>();
     }
 
     public static String buyMerch(final CommandInput commandInput) {
@@ -116,7 +125,46 @@ public class User implements UserVisitable {
         return user.merches;
     }
 
+    public static String subscribe(final CommandInput commandInput) {
+        if (Admin.getUser(commandInput.getUsername()) == null) {
+            return "The username " + commandInput.getUsername() + " doesn't exist.";
+        }
+        User user = Admin.getUser(commandInput.getUsername());
+        if (!user.getCurrentPage().equals(Enums.currentPage.ARTIST) && !user.getCurrentPage().equals(Enums.currentPage.HOST)) {
+            return "To subscribe you need to be on the page of an artist or host.";
+        }
+        String unsubscribe = null;
+        if (!user.getSubscribedTo().isEmpty()) {
+            for (String name : user.subscribedTo) {
+                if (name.equals(user.select)) {
+                    unsubscribe = name;
+                }
+            }
+        }
+        Artist artist = Admin.getArtist(user.select);
 
+        if (unsubscribe != null) {
+            user.getSubscribedTo().remove(unsubscribe);
+            ArrayList<String> subscribers = artist.getSubscribers();
+            subscribers.remove(user.getUsername());
+            artist.setSubscribers(subscribers);
+            return commandInput.getUsername() + " unsubscribed from " + user.select + " successfully.";
+        }
+
+        user.getSubscribedTo().add(user.select);
+        ArrayList<String> subscribers = new ArrayList<>();
+        subscribers = artist.getSubscribers();
+        subscribers.add(user.getUsername());
+        artist.setSubscribers(subscribers);
+        return commandInput.getUsername() + " subscribed to " + user.select + " successfully.";
+    }
+
+    public static ArrayList<ObjectNode> showNotifications(CommandInput commandInput) {
+        User user = Admin.getUser(commandInput.getUsername());
+        ArrayList<ObjectNode> notifications = user.getNotifications();
+        user.setNotifications(new ArrayList<>());
+        return notifications;
+    }
     /**
      * Accepts a deletion visitor and delegates the deletion operation to the appropriate method
      * based on the user type.
@@ -193,11 +241,11 @@ public class User implements UserVisitable {
 
 
         LibraryEntry selected = searchBar.select(itemNumber);
-        select = selected.getName();
 
         if (selected == null) {
             return "The selected ID is too high.";
         }
+        select = selected.getName();
         if (searchBar.getLastSearchType().equals("artist")) {
             setCurrentPage(Enums.currentPage.ARTIST);
 
