@@ -823,4 +823,22 @@ public class CommandRunner {
         objectNode.putPOJO("message", PageCommands.previousPage(commandInput));
         return objectNode;
     }
+
+    public static ObjectNode nextPage(final CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "nextPage");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("message", PageCommands.nextPage(commandInput));
+        return objectNode;
+    }
+
+    public static ObjectNode loadRecommendations(final CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "loadRecommendations");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("message", UpdateRecommendations.loadRecommendation(commandInput));
+        return objectNode;
+    }
 }

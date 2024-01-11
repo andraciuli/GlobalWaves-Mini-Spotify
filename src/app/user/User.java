@@ -85,19 +85,16 @@ public class User implements UserVisitable {
     private ArrayList<SongWrapp> listenedSongs;
     @Getter
     @Setter
-    private ArrayList<Song> fansPlaylist;
-    @Getter
-    @Setter
     private String songRecommandation;
     @Getter
     @Setter
     private ArrayList<Song> playlistRecommandation;
     @Getter
     @Setter
-    private String fansPlaylistName;
+    private String playlistRecommandationName;
     @Getter
     @Setter
-    private String playlistRecommandationName;
+    private ArrayList<Enums.currentPage> istoricPages;
 
     /**
      * Instantiates a new User.
@@ -128,11 +125,10 @@ public class User implements UserVisitable {
         subscribedTo = new ArrayList<>();
         notifications = new ArrayList<>();
         listenedSongs = new ArrayList<>();
-        fansPlaylist = new ArrayList<>();
         playlistRecommandation = new ArrayList<>();
-        fansPlaylistName = new String();
         playlistRecommandationName = new String();
         songRecommandation = new String();
+        istoricPages = new ArrayList<>();
     }
 
     public static String buyMerch(final CommandInput commandInput) {

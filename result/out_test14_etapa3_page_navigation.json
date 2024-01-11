@@ -69,12 +69,12 @@
   "command" : "changePage",
   "user" : "ghiu",
   "timestamp" : 75,
-  "message" : "ghiu is trying to access a non-existent page."
+  "message" : "ghiu accessed Host successfully."
 }, {
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 85,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]"
+  "message" : "Podcasts:\n\t[Auditory Adventures:\n\t[Exploring Sonic Landscapes - Journey through the world's most unique auditory experiences., The Future of Music Technology - A look into the innovations shaping the future of music production and listening., Cultural Beats - An exploration of how different cultures influence music genres.]\n]\n\nAnnouncements:\n\t[]"
 }, {
   "command" : "search",
   "user" : "ghiu",
@@ -113,12 +113,17 @@
   "timestamp" : 152,
   "message" : "The recommendations for user ghiu have been updated successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "ghiu",
+  "timestamp" : 155,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "status",
   "user" : "ghiu",
   "timestamp" : 165,
   "stats" : {
-    "name" : "Bohemian Rhapsody",
-    "remainedTime" : 290,
+    "name" : "Seven Seas of Rhye",
+    "remainedTime" : 69,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -132,7 +137,7 @@
   "command" : "like",
   "user" : "ghiu",
   "timestamp" : 195,
-  "message" : "Unlike registered successfully."
+  "message" : "Like registered successfully."
 }, {
   "command" : "changePage",
   "user" : "ghiu",
@@ -142,7 +147,7 @@
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 205,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
+  "message" : "Liked songs:\n\t[Bohemian Rhapsody, Seven Seas of Rhye]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[Seven Seas of Rhye]\n\nPlaylists recommendations:\n\t[]"
 }, {
   "command" : "previousPage",
   "user" : "ghiu",
@@ -159,20 +164,35 @@
   "timestamp" : 220,
   "message" : "The user ghiu has navigated successfully to the previous page."
 }, {
+  "command" : "nextPage",
+  "user" : "ghiu",
+  "timestamp" : 235,
+  "message" : "The user ghiu has navigated successfully to the next page."
+}, {
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 240,
-  "message" : "Albums:\n\t[Greatest Hits]\n\nMerch:\n\t[]\n\nEvents:\n\t[]"
+  "message" : "Podcasts:\n\t[Auditory Adventures:\n\t[Exploring Sonic Landscapes - Journey through the world's most unique auditory experiences., The Future of Music Technology - A look into the innovations shaping the future of music production and listening., Cultural Beats - An exploration of how different cultures influence music genres.]\n]\n\nAnnouncements:\n\t[]"
 }, {
   "command" : "changePage",
   "user" : "ghiu",
   "timestamp" : 245,
   "message" : "ghiu accessed Home successfully."
 }, {
+  "command" : "nextPage",
+  "user" : "ghiu",
+  "timestamp" : 255,
+  "message" : "There are no pages left to go forward."
+}, {
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 265,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
+  "message" : "Liked songs:\n\t[Bohemian Rhapsody, Seven Seas of Rhye]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[Seven Seas of Rhye]\n\nPlaylists recommendations:\n\t[]"
+}, {
+  "command" : "nextPage",
+  "user" : "ghiu",
+  "timestamp" : 275,
+  "message" : "There are no pages left to go forward."
 }, {
   "command" : "endProgram",
   "result" : {

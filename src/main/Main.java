@@ -73,7 +73,7 @@ public final class Main {
         ObjectMapper objectMapper = new ObjectMapper();
         LibraryInput library = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + "library/library.json"), LibraryInput.class);
         CommandInput[] commands = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + filePath1), CommandInput[].class);
-        //CommandInput[] commands = objectMapper.readValue(new File("input/test08_etapa3_notifications_more.json"), CommandInput[].class);
+        //CommandInput[] commands = objectMapper.readValue(new File("input/test14_etapa3_page_navigation.json"), CommandInput[].class);
         ArrayNode outputs = objectMapper.createArrayNode();
 
         Admin.setUsers(library.getUsers());
@@ -133,6 +133,8 @@ public final class Main {
                 case "getNotifications" -> outputs.add(CommandRunner.getNotifications(command));
                 case "updateRecommendations" -> outputs.add(CommandRunner.updateRecommendations(command));
                 case "previousPage" -> outputs.add(CommandRunner.previousPage(command));
+                case "nextPage" -> outputs.add(CommandRunner.nextPage(command));
+                case "loadRecommendations" -> outputs.add(CommandRunner.loadRecommendations(command));
                 default -> System.out.println("Invalid command " + commandName);
             }
         }

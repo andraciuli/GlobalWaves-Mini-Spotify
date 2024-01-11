@@ -189,6 +189,15 @@ public final class Admin {
         return null;
     }
 
+    public static Podcast getPodcast(final String podcastName) {
+        for (Podcast podcast : podcasts) {
+            if (podcast.getName().equals(podcastName)) {
+                return podcast;
+            }
+        }
+        return null;
+    }
+
     /**
      * Gets artist.
      *

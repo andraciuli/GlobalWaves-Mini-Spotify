@@ -4,6 +4,7 @@ import app.Admin;
 import app.CommandRunner;
 import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
+import app.audio.Collections.Podcast;
 import app.player.Player;
 import app.player.PlayerSource;
 import app.user.Artist;
@@ -108,7 +109,7 @@ public final class PageCommands {
                 result.append("Liked songs:\n\t").append(likedSongs)
                         .append("\n\nFollowed playlists:\n\t").append(followedPlaylists)
                         .append("\n\nSong recommendations:\n\t[").append(user.getSongRecommandation())
-                        .append("]\n\nPlaylists recommendations:\n\t[").append(user.getFansPlaylistName()).append("]");
+                        .append("]\n\nPlaylists recommendations:\n\t[").append(user.getPlaylistRecommandationName()).append("]");
                 break;
             case ARTIST:
                 Artist artist = Admin.getArtist(selectedArtist);
@@ -149,7 +150,7 @@ public final class PageCommands {
                 String announcementsInfo = "Announcements:\n\t[" + host.getAnnouncements().stream()
                         .map(announcement -> announcement.getName() + ":\n\t"
                                 + announcement.getDescription())
-                        .collect(Collectors.joining(", ")) + "\n]";
+                        .collect(Collectors.joining(", ")) + "]";
 
                 // Combine everything
                 result.append(podcastsInfo).append("\n\n").append(announcementsInfo);
@@ -191,8 +192,10 @@ public final class PageCommands {
         user.setPreviousPage(user.getCurrentPage());
         if (commandInput.getNextPage().equals("Home")) {
             user.setCurrentPage(Enums.currentPage.HOME);
+            user.getIstoricPages().add(user.getCurrentPage());
         } else if (commandInput.getNextPage().equals("LikedContent")) {
             user.setCurrentPage(Enums.currentPage.LIKED_CONTENT);
+            user.getIstoricPages().add(user.getCurrentPage());
         } else if (commandInput.getNextPage().equals("Artist")) {
             user.setCurrentPage(Enums.currentPage.ARTIST);
             Player player = user.getPlayerInstance(user);
@@ -206,6 +209,21 @@ public final class PageCommands {
             if (songOnLoad != null) {
                 selectedArtist = songOnLoad.getArtist();
             }
+            user.getIstoricPages().add(user.getCurrentPage());
+        } else if (commandInput.getNextPage().equals("Host")) {
+            user.setCurrentPage(Enums.currentPage.HOST);
+            Player player = user.getPlayerInstance(user);
+            PlayerSource source = Player.getPlayerSourceInstance(player);
+            Podcast podcastOnLoad = null;
+            if (source != null) {
+                if (source.getAudioCollection() != null) {
+                    podcastOnLoad = Admin.getPodcast(source.getAudioCollection().getName());
+                }
+            }
+            if (podcastOnLoad != null) {
+                selectedHost = podcastOnLoad.getOwner();
+            }
+            user.getIstoricPages().add(user.getCurrentPage());
         } else {
             return commandInput.getUsername() + " is trying to access a non-existent page.";
         }
@@ -219,7 +237,25 @@ public final class PageCommands {
             return "There are no pages left to go back.";
         }
         user.setNextPage(user.getCurrentPage());
-        user.setCurrentPage(user.getPreviousPage());
+        //user.setCurrentPage(user.getPreviousPage());
+        int index = user.getIstoricPages().indexOf(user.getCurrentPage());
+        if (index != -1 && index > 0) {
+            user.setCurrentPage(user.getIstoricPages().get(index - 1));
+        } else {
+            return "There are no pages left to go back.";
+        }
+
         return "The user " + commandInput.getUsername() + " has navigated successfully to the previous page.";
+    }
+
+    public static String nextPage(final CommandInput commandInput) {
+        User user = Admin.getUser(commandInput.getUsername());
+        if (user.getNextPage().equals(Enums.currentPage.DEFAULT)) {
+            return "There are no pages left to go forward.";
+        }
+        user.setPreviousPage(user.getCurrentPage());
+        user.setCurrentPage(user.getNextPage());
+        user.setNextPage(Enums.currentPage.DEFAULT);
+        return "The user " + commandInput.getUsername() + " has navigated successfully to the next page.";
     }
 }

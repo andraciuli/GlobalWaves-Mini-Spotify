@@ -2121,6 +2121,11 @@
   "timestamp" : 1317,
   "result" : [ ]
 }, {
+  "command" : "loadRecommendations",
+  "user" : "bob35",
+  "timestamp" : 1321,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 1326,
@@ -3037,6 +3042,11 @@
   "timestamp" : 1943,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "henry26",
+  "timestamp" : 1957,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "bob35",
   "timestamp" : 1962,
@@ -3689,6 +3699,11 @@
   "command" : "load",
   "user" : "david27",
   "timestamp" : 2569,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "carol19",
+  "timestamp" : 2570,
   "message" : "Playback loaded successfully."
 }, {
   "command" : "removeAlbum",
@@ -6533,6 +6548,11 @@
   "timestamp" : 5838,
   "message" : "Queen has added new album successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "frank21",
+  "timestamp" : 5853,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "irene33",
   "timestamp" : 5868,
@@ -8131,6 +8151,11 @@
 }, {
   "command" : "load",
   "user" : "jack29",
+  "timestamp" : 7207,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "emily30",
   "timestamp" : 7207,
   "message" : "Playback loaded successfully."
 }, {
@@ -10145,6 +10170,11 @@
   "timestamp" : 9075,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "frank21",
+  "timestamp" : 9091,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 9094,
@@ -10779,6 +10809,11 @@
   "timestamp" : 9736,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "jack29",
+  "timestamp" : 9745,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "emily30",
   "timestamp" : 9752,
@@ -11224,6 +11259,11 @@
   "command" : "load",
   "user" : "henry26",
   "timestamp" : 10208,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "jack29",
+  "timestamp" : 10217,
   "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
@@ -16095,6 +16135,11 @@
   "timestamp" : 17095,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "jack29",
+  "timestamp" : 17100,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 17111,
@@ -16509,6 +16554,11 @@
   "command" : "load",
   "user" : "jack29",
   "timestamp" : 17650,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "bob35",
+  "timestamp" : 17665,
   "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
@@ -18484,6 +18534,11 @@
   "timestamp" : 20712,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "henry26",
+  "timestamp" : 20718,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "bob35",
   "timestamp" : 20747,
@@ -19380,6 +19435,11 @@
   "timestamp" : 21831,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "alice22",
+  "timestamp" : 21858,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "bob35",
   "timestamp" : 21889,
@@ -19844,6 +19904,11 @@
   "timestamp" : 22659,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "loadRecommendations",
+  "user" : "bob35",
+  "timestamp" : 22712,
+  "message" : "Playback loaded successfully."
+}, {
   "command" : "search",
   "user" : "carol19",
   "timestamp" : 22713,
@@ -19874,6 +19939,11 @@
   "command" : "load",
   "user" : "alice22",
   "timestamp" : 22716,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "grace25",
+  "timestamp" : 22734,
   "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
@@ -23303,6 +23373,11 @@
   "command" : "load",
   "user" : "alice22",
   "timestamp" : 29203,
+  "message" : "Playback loaded successfully."
+}, {
+  "command" : "loadRecommendations",
+  "user" : "irene33",
+  "timestamp" : 29292,
   "message" : "Playback loaded successfully."
 }, {
   "command" : "search",
