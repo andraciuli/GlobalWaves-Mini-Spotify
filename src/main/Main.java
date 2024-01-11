@@ -131,6 +131,8 @@ public final class Main {
                 case "seeMerch" -> outputs.add(CommandRunner.seeMerch(command));
                 case "subscribe" -> outputs.add(CommandRunner.subscribe(command));
                 case "getNotifications" -> outputs.add(CommandRunner.getNotifications(command));
+                case "updateRecommendations" -> outputs.add(CommandRunner.updateRecommendations(command));
+                case "previousPage" -> outputs.add(CommandRunner.previousPage(command));
                 default -> System.out.println("Invalid command " + commandName);
             }
         }

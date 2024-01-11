@@ -12,17 +12,22 @@ import app.audio.Files.Song;
 import app.audio.LibraryEntry;
 import app.pageSystem.PageCommands;
 import app.player.Player;
+import app.player.PlayerSource;
 import app.player.PlayerStats;
 import app.searchBar.Filters;
 import app.searchBar.SearchBar;
 import app.utils.Enums;
 import app.utils.UserVisitable;
+import app.wrapped.SongWrapp;
+import app.wrapped.UserWrapp;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -58,6 +63,12 @@ public class User implements UserVisitable {
     @Setter
     private Enums.currentPage currentPage;
     @Getter
+    @Setter
+    private Enums.currentPage previousPage;
+    @Getter
+    @Setter
+    private Enums.currentPage nextPage;
+    @Getter
     private String lastSearchType;
     @Getter
     private ArrayList<Podcast> podcasts;
@@ -70,6 +81,23 @@ public class User implements UserVisitable {
     @Getter
     @Setter
     private ArrayList<ObjectNode> notifications = new ArrayList<>();
+    @Getter
+    private ArrayList<SongWrapp> listenedSongs;
+    @Getter
+    @Setter
+    private ArrayList<Song> fansPlaylist;
+    @Getter
+    @Setter
+    private String songRecommandation;
+    @Getter
+    @Setter
+    private ArrayList<Song> playlistRecommandation;
+    @Getter
+    @Setter
+    private String fansPlaylistName;
+    @Getter
+    @Setter
+    private String playlistRecommandationName;
 
     /**
      * Instantiates a new User.
@@ -92,11 +120,19 @@ public class User implements UserVisitable {
         this.connectionStatus = Enums.ConnectionStatus.ONLINE;
         albums = new ArrayList<>();
         currentPage = Enums.currentPage.HOME;
+        previousPage = Enums.currentPage.DEFAULT;
+        nextPage = Enums.currentPage.DEFAULT;
         lastSearchType = new String();
         podcasts = new ArrayList<>();
         merches = new ArrayList<>();
         subscribedTo = new ArrayList<>();
         notifications = new ArrayList<>();
+        listenedSongs = new ArrayList<>();
+        fansPlaylist = new ArrayList<>();
+        playlistRecommandation = new ArrayList<>();
+        fansPlaylistName = new String();
+        playlistRecommandationName = new String();
+        songRecommandation = new String();
     }
 
     public static String buyMerch(final CommandInput commandInput) {
@@ -164,6 +200,73 @@ public class User implements UserVisitable {
         ArrayList<ObjectNode> notifications = user.getNotifications();
         user.setNotifications(new ArrayList<>());
         return notifications;
+    }
+
+    public void updateListenSongs() {
+        Player player = getPlayerInstance(this);
+        PlayerSource source = Player.getPlayerSourceInstance(player);
+        String songName = new String();
+        Song songOnListen = null;
+        if (source != null) {
+            if (source.getAudioFile() != null) {
+                songName = source.getAudioFile().getName();
+            }
+        }
+        for (Song song : Admin.getSongs()) {
+            if (song.getName().equals(songName)) {
+                songOnListen = song;
+                break;
+            }
+        }
+        int containsSong = 1;
+        int containsUser = 1;
+        if (songOnListen != null) {
+            for (SongWrapp song : listenedSongs) {
+                if (songOnListen.getName().equals(song.getSong().getName())) {
+                    song.incrementListens();
+                    break;
+                } else {
+                    containsSong = 0;
+                }
+            }
+
+            if (containsSong == 0) {
+                listenedSongs.add(new SongWrapp(songOnListen));
+            }
+            for (Artist artist : Admin.getArtists()) {
+                if (songOnListen.getArtist().equals(artist.getName())) {
+                    for (UserWrapp user : artist.getListeners()) {
+                        if (user.getUser().equals(this)) {
+                            user.incrementListens();
+                            break;
+                        } else {
+                            containsUser = 0;
+                        }
+                    }
+                    if (containsUser == 0) {
+                        artist.getListeners().add(new UserWrapp(this));
+                    }
+                    if (!artist.isWasPlayed()) {
+                        artist.setWasPlayed(true);
+                    }
+                }
+            }
+        }
+    }
+
+    public ArrayList<Song> top5LikedSongs() {
+        // Sort the liked songs in descending order based on some criteria (e.g., popularity, release date)
+        Collections.sort(likedSongs, Comparator.comparingInt(Song::getLikes).reversed());
+
+        // Create a list to store the top 5 liked songs
+        ArrayList<Song> top5LikedSongsList = new ArrayList<>();
+
+        // Add up to the first 5 liked songs to the list
+        for (int i = 0; i < Math.min(5, likedSongs.size()); i++) {
+            top5LikedSongsList.add(likedSongs.get(i));
+        }
+
+        return top5LikedSongsList;
     }
     /**
      * Accepts a deletion visitor and delegates the deletion operation to the appropriate method
@@ -281,6 +384,7 @@ public class User implements UserVisitable {
         }
 
         player.setSource(searchBar.getLastSelected(), searchBar.getLastSearchType());
+        updateListenSongs();
         searchBar.clearSelection();
 
         player.pause();

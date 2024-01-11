@@ -8,6 +8,7 @@ import app.audio.LibraryEntry;
 import app.player.Player;
 import app.player.PlayerSource;
 import app.utils.UserVisitable;
+import app.wrapped.UserWrapp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
@@ -17,9 +18,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Artist extends LibraryEntry implements UserVisitable {
     public static ObjectMapper objectMapper = new ObjectMapper();
@@ -45,11 +44,16 @@ public class Artist extends LibraryEntry implements UserVisitable {
     @Getter
     @Setter
     private ArrayList<String> subscribers;
+    @Getter
+    @Setter
+    private ArrayList<UserWrapp> listeners;
+    @Getter
+    @Setter
+    private boolean wasPlayed;
 
 
     public Artist(final String name, final int age, final String city, final String userType) {
         super(name);
-
         this.name = name;
         this.age = age;
         this.city = city;
@@ -60,6 +64,8 @@ public class Artist extends LibraryEntry implements UserVisitable {
         merchRevenue = 0;
         songRevenue = 0;
         subscribers = new ArrayList<>();
+        listeners = new ArrayList<>();
+        wasPlayed = false;
     }
 
     /**
@@ -86,6 +92,21 @@ public class Artist extends LibraryEntry implements UserVisitable {
             likes += album.getNumberLikes();
         }
         return likes;
+    }
+
+    public ArrayList<User> top5Fans() {
+        // Sort the listeners based on the number of listens in descending order
+        Collections.sort(listeners, Comparator.comparingInt(UserWrapp::getListens).reversed());
+
+        // Create a list to store the top 5 fans
+        ArrayList<User> top5FansList = new ArrayList<>();
+
+        // Add up to the first 5 fans to the list
+        for (int i = 0; i < Math.min(5, listeners.size()); i++) {
+            top5FansList.add(listeners.get(i).getUser());
+        }
+
+        return top5FansList;
     }
 
     private static boolean hasDuplicates(final ArrayList<SongInput> songs) {

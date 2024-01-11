@@ -5575,6 +5575,11 @@
   "timestamp" : 4802,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "carol19",
+  "timestamp" : 4803,
+  "message" : "The recommendations for user carol19 have been updated successfully."
+}, {
   "command" : "search",
   "user" : "alice22",
   "timestamp" : 4809,
@@ -10395,6 +10400,11 @@
   "timestamp" : 9382,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "henry26",
+  "timestamp" : 9386,
+  "message" : "The recommendations for user henry26 have been updated successfully."
+}, {
   "command" : "search",
   "user" : "grace25",
   "timestamp" : 9394,
@@ -11311,6 +11321,11 @@
   "user" : "alice22",
   "timestamp" : 10322,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "updateRecommendations",
+  "user" : "grace25",
+  "timestamp" : 10322,
+  "message" : "The recommendations for user grace25 have been updated successfully."
 }, {
   "command" : "search",
   "user" : "bob35",
@@ -17696,6 +17711,11 @@
   "timestamp" : 19619,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "emily30",
+  "timestamp" : 19635,
+  "message" : "The recommendations for user emily30 have been updated successfully."
+}, {
   "command" : "search",
   "user" : "bob35",
   "timestamp" : 19651,
@@ -21856,6 +21876,11 @@
   "timestamp" : 26338,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "carol19",
+  "timestamp" : 26373,
+  "message" : "The recommendations for user carol19 have been updated successfully."
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 26419,
@@ -23584,6 +23609,11 @@
   "timestamp" : 31315,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "alice22",
+  "timestamp" : 31350,
+  "message" : "The recommendations for user alice22 have been updated successfully."
+}, {
   "command" : "search",
   "user" : "alice22",
   "timestamp" : 31412,
@@ -24593,5 +24623,102 @@
   "message" : "Playback loaded successfully."
 }, {
   "command" : "endProgram",
-  "result" : { }
+  "result" : {
+    "ABBA" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 1,
+      "mostProfitableSong" : "N/A"
+    },
+    "Adele" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 2,
+      "mostProfitableSong" : "N/A"
+    },
+    "Aretha Franklin" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 3,
+      "mostProfitableSong" : "N/A"
+    },
+    "Bob Dylan" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 4,
+      "mostProfitableSong" : "N/A"
+    },
+    "Bruce Springsteen" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 5,
+      "mostProfitableSong" : "N/A"
+    },
+    "Elton John" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 6,
+      "mostProfitableSong" : "N/A"
+    },
+    "Johnny Cash" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 7,
+      "mostProfitableSong" : "N/A"
+    },
+    "Joni Mitchell" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 8,
+      "mostProfitableSong" : "N/A"
+    },
+    "Nirvana" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 9,
+      "mostProfitableSong" : "N/A"
+    },
+    "Queen" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 10,
+      "mostProfitableSong" : "N/A"
+    },
+    "Radiohead" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 11,
+      "mostProfitableSong" : "N/A"
+    },
+    "Rihanna" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 12,
+      "mostProfitableSong" : "N/A"
+    },
+    "Stevie Wonder" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 13,
+      "mostProfitableSong" : "N/A"
+    },
+    "The Beach Boys" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 14,
+      "mostProfitableSong" : "N/A"
+    },
+    "The Beatles" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 15,
+      "mostProfitableSong" : "N/A"
+    },
+    "The Rolling Stones" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 16,
+      "mostProfitableSong" : "N/A"
+    }
+  }
 } ]

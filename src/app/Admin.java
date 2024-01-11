@@ -12,7 +12,6 @@ import app.user.Host;
 import app.user.User;
 import app.utils.Enums;
 import app.utils.UserVisitor;
-import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
 import fileio.input.EpisodeInput;
@@ -24,8 +23,6 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static app.user.Artist.objectMapper;
 
@@ -145,6 +142,7 @@ public final class Admin {
         return albums;
     }
 
+
     /**
      * Gets podcasts.
      *
@@ -177,6 +175,15 @@ public final class Admin {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return user;
+            }
+        }
+        return null;
+    }
+
+    public static Song getSong(final String songName) {
+        for (Song song : songs) {
+            if (song.getName().equals(songName)) {
+                return song;
             }
         }
         return null;
@@ -645,7 +652,7 @@ public final class Admin {
         ObjectNode result = objectMapper.createObjectNode();
         ArrayList<Artist> rankedArtists = new ArrayList<>();
         for (Artist artist : getArtists()) {
-            if (artist.getMerchRevenue() != 0 || artist.getSongRevenue() != 0) {
+            if (artist.getMerchRevenue() != 0 || artist.getSongRevenue() != 0 || artist.isWasPlayed()) {
                 rankedArtists.add(artist);
             }
         }

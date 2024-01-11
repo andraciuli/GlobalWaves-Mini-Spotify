@@ -108,6 +108,11 @@
   "timestamp" : 130,
   "message" : "Like registered successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "ghiu",
+  "timestamp" : 152,
+  "message" : "The recommendations for user ghiu have been updated successfully."
+}, {
   "command" : "status",
   "user" : "ghiu",
   "timestamp" : 165,
@@ -122,7 +127,7 @@
   "command" : "changePage",
   "user" : "ghiu",
   "timestamp" : 175,
-  "message" : "ghiu is trying to access a non-existent page."
+  "message" : "ghiu accessed Artist successfully."
 }, {
   "command" : "like",
   "user" : "ghiu",
@@ -137,12 +142,27 @@
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 205,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]"
+  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
+}, {
+  "command" : "previousPage",
+  "user" : "ghiu",
+  "timestamp" : 210,
+  "message" : "The user ghiu has navigated successfully to the previous page."
+}, {
+  "command" : "previousPage",
+  "user" : "ghiu",
+  "timestamp" : 215,
+  "message" : "The user ghiu has navigated successfully to the previous page."
+}, {
+  "command" : "previousPage",
+  "user" : "ghiu",
+  "timestamp" : 220,
+  "message" : "The user ghiu has navigated successfully to the previous page."
 }, {
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 240,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]"
+  "message" : "Albums:\n\t[Greatest Hits]\n\nMerch:\n\t[]\n\nEvents:\n\t[]"
 }, {
   "command" : "changePage",
   "user" : "ghiu",
@@ -152,8 +172,15 @@
   "user" : "ghiu",
   "command" : "printCurrentPage",
   "timestamp" : 265,
-  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]"
+  "message" : "Liked songs:\n\t[]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
 }, {
   "command" : "endProgram",
-  "result" : { }
+  "result" : {
+    "Queen" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 1,
+      "mostProfitableSong" : "N/A"
+    }
+  }
 } ]

@@ -82,10 +82,15 @@
   "timestamp" : 135,
   "message" : "Like registered successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "carmenzz",
+  "timestamp" : 145,
+  "message" : "The recommendations for user carmenzz have been updated successfully."
+}, {
   "user" : "carmenzz",
   "command" : "printCurrentPage",
   "timestamp" : 155,
-  "message" : "Liked songs:\n\t[Rocket Man, Your Song]\n\nFollowed playlists:\n\t[]"
+  "message" : "Liked songs:\n\t[Rocket Man, Your Song]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[Elton John Fan Club recommendations]"
 }, {
   "command" : "changePage",
   "user" : "carmenzz",
@@ -95,7 +100,12 @@
   "command" : "changePage",
   "user" : "carmenzz",
   "timestamp" : 175,
-  "message" : "carmenzz is trying to access a non-existent page."
+  "message" : "carmenzz accessed Artist successfully."
+}, {
+  "command" : "previousPage",
+  "user" : "carmenzz",
+  "timestamp" : 180,
+  "message" : "The user carmenzz has navigated successfully to the previous page."
 }, {
   "user" : "carmenzz",
   "command" : "printCurrentPage",
@@ -103,5 +113,12 @@
   "message" : "Liked songs:\n\t[Rocket Man - Elton John, Your Song - Elton John]\n\nFollowed playlists:\n\t[]"
 }, {
   "command" : "endProgram",
-  "result" : { }
+  "result" : {
+    "Elton John" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 1,
+      "mostProfitableSong" : "N/A"
+    }
+  }
 } ]

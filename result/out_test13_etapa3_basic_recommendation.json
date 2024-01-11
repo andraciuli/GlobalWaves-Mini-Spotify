@@ -73,10 +73,20 @@
   "timestamp" : 130,
   "message" : "Like registered successfully."
 }, {
+  "command" : "updateRecommendations",
+  "user" : "alice22",
+  "timestamp" : 135,
+  "message" : "The recommendations for user alice22 have been updated successfully."
+}, {
   "user" : "alice22",
   "command" : "printCurrentPage",
   "timestamp" : 150,
-  "message" : "Liked songs:\n\t[Amsterdam]\n\nFollowed playlists:\n\t[]"
+  "message" : "Liked songs:\n\t[Amsterdam]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
+}, {
+  "command" : "updateRecommendations",
+  "user" : "alice22",
+  "timestamp" : 165,
+  "message" : "The recommendations for user alice22 have been updated successfully."
 }, {
   "command" : "addUser",
   "user" : "Michael Jackson",
@@ -91,8 +101,15 @@
   "user" : "alice22",
   "command" : "printCurrentPage",
   "timestamp" : 190,
-  "message" : "Liked songs:\n\t[Amsterdam]\n\nFollowed playlists:\n\t[]"
+  "message" : "Liked songs:\n\t[Amsterdam]\n\nFollowed playlists:\n\t[]\n\nSong recommendations:\n\t[]\n\nPlaylists recommendations:\n\t[]"
 }, {
   "command" : "endProgram",
-  "result" : { }
+  "result" : {
+    "Nothing But Thieves" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 0.0,
+      "ranking" : 1,
+      "mostProfitableSong" : "N/A"
+    }
+  }
 } ]

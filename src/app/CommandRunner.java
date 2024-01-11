@@ -1,5 +1,6 @@
 package app;
 
+import app.Recommendations.UpdateRecommendations;
 import app.audio.Collections.PlaylistOutput;
 import app.pageSystem.PageCommands;
 import app.player.PlayerStats;
@@ -787,7 +788,7 @@ public class CommandRunner {
         return objectNode;
     }
 
-    public static ObjectNode subscribe(CommandInput commandInput) {
+    public static ObjectNode subscribe(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "subscribe");
         objectNode.put("user", commandInput.getUsername());
@@ -796,12 +797,30 @@ public class CommandRunner {
         return objectNode;
     }
 
-    public static ObjectNode getNotifications(CommandInput commandInput) {
+    public static ObjectNode getNotifications(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "getNotifications");
         objectNode.put("user", commandInput.getUsername());
         objectNode.put("timestamp", commandInput.getTimestamp());
         objectNode.putPOJO("notifications", User.showNotifications(commandInput));
+        return objectNode;
+    }
+
+    public static ObjectNode updateRecommendations(final CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "updateRecommendations");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("message", UpdateRecommendations.updateRecommendations(commandInput));
+        return objectNode;
+    }
+
+    public static ObjectNode previousPage(final CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "previousPage");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("message", PageCommands.previousPage(commandInput));
         return objectNode;
     }
 }

@@ -1,8 +1,11 @@
 package app.pageSystem;
 
 import app.Admin;
+import app.CommandRunner;
 import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
+import app.player.Player;
+import app.player.PlayerSource;
 import app.user.Artist;
 import app.user.Host;
 import app.user.User;
@@ -103,7 +106,9 @@ public final class PageCommands {
                 ArrayList<String> likedSongs = PageCommands.getLikedSongs(user);
                 ArrayList<String> followedPlaylists = PageCommands.getFollowedPlaylists(user);
                 result.append("Liked songs:\n\t").append(likedSongs)
-                        .append("\n\nFollowed playlists:\n\t").append(followedPlaylists);
+                        .append("\n\nFollowed playlists:\n\t").append(followedPlaylists)
+                        .append("\n\nSong recommendations:\n\t[").append(user.getSongRecommandation())
+                        .append("]\n\nPlaylists recommendations:\n\t[").append(user.getFansPlaylistName()).append("]");
                 break;
             case ARTIST:
                 Artist artist = Admin.getArtist(selectedArtist);
@@ -183,14 +188,38 @@ public final class PageCommands {
      * @return A string indicating the success or failure of the page change operation.
      */
     public static String changePage(final CommandInput commandInput, final User user) {
+        user.setPreviousPage(user.getCurrentPage());
         if (commandInput.getNextPage().equals("Home")) {
             user.setCurrentPage(Enums.currentPage.HOME);
         } else if (commandInput.getNextPage().equals("LikedContent")) {
             user.setCurrentPage(Enums.currentPage.LIKED_CONTENT);
+        } else if (commandInput.getNextPage().equals("Artist")) {
+            user.setCurrentPage(Enums.currentPage.ARTIST);
+            Player player = user.getPlayerInstance(user);
+            PlayerSource source = Player.getPlayerSourceInstance(player);
+            Song songOnLoad = null;
+            if (source != null) {
+                if (source.getAudioFile() != null) {
+                    songOnLoad = Admin.getSong(source.getAudioFile().getName());
+                }
+            }
+            if (songOnLoad != null) {
+                selectedArtist = songOnLoad.getArtist();
+            }
         } else {
             return commandInput.getUsername() + " is trying to access a non-existent page.";
         }
         return commandInput.getUsername() + " accessed "
                 + commandInput.getNextPage() + " successfully.";
+    }
+
+    public static String previousPage(final CommandInput commandInput) {
+        User user = Admin.getUser(commandInput.getUsername());
+        if (user.getPreviousPage().equals(Enums.currentPage.DEFAULT)) {
+            return "There are no pages left to go back.";
+        }
+        user.setNextPage(user.getCurrentPage());
+        user.setCurrentPage(user.getPreviousPage());
+        return "The user " + commandInput.getUsername() + " has navigated successfully to the previous page.";
     }
 }
