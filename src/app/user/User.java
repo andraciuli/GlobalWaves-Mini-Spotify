@@ -1,15 +1,16 @@
 package app.user;
 
 import app.Admin;
-import app.CommandRunner;
 import app.audio.Collections.Podcast;
 import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
 import app.audio.Collections.AudioCollection;
 import app.audio.Collections.PlaylistOutput;
 import app.audio.Files.AudioFile;
+import app.audio.Files.Episode;
 import app.audio.Files.Song;
 import app.audio.LibraryEntry;
+import app.observer.Observer;
 import app.pageSystem.PageCommands;
 import app.player.Player;
 import app.player.PlayerSource;
@@ -18,6 +19,7 @@ import app.searchBar.Filters;
 import app.searchBar.SearchBar;
 import app.utils.Enums;
 import app.utils.UserVisitable;
+import app.wrapped.EpisodeWrapp;
 import app.wrapped.SongWrapp;
 import app.wrapped.UserWrapp;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -34,7 +36,7 @@ import java.util.List;
 /**
  * The type User.
  */
-public class User implements UserVisitable {
+public class User implements UserVisitable, Observer {
     @Getter
     private String username;
     @Getter
@@ -95,6 +97,11 @@ public class User implements UserVisitable {
     @Getter
     @Setter
     private ArrayList<Enums.currentPage> istoricPages;
+    @Getter
+    private ArrayList<EpisodeWrapp> listenedEpisodes;
+    @Getter
+    private ArrayList<Artist> artists;
+    private static final int TOP_LIMIT = 5;
 
     /**
      * Instantiates a new User.
@@ -129,17 +136,32 @@ public class User implements UserVisitable {
         playlistRecommandationName = new String();
         songRecommandation = new String();
         istoricPages = new ArrayList<>();
+        listenedEpisodes = new ArrayList<>();
+        artists = new ArrayList<>();
     }
 
+    /**
+     * Buys a merch item for the user from the selected artist's collection.
+     *
+     * @param commandInput The command input specifying the username and merch details.
+     * @return A message indicating the success or failure of the merch purchase.
+     */
     public static String buyMerch(final CommandInput commandInput) {
+        // Check if the user exists
         if (Admin.getUser(commandInput.getUsername()) == null) {
             return "The username " + commandInput.getUsername() + " doesn't exist.";
         }
+
         User user = Admin.getUser(commandInput.getUsername());
+
+        // Check if the user is on the artist's page
         if (!user.getCurrentPage().equals(Enums.currentPage.ARTIST)) {
             return "Cannot buy merch from this page.";
         }
+
         Artist artist = Admin.getArtist(user.select);
+
+        // Attempt to find and buy the specified merch item
         for (Artist.Merch merch : artist.getMerches()) {
             if (merch.getName().equals(commandInput.getName())) {
                 double merchRevenue = artist.getMerchRevenue();
@@ -149,23 +171,44 @@ public class User implements UserVisitable {
                 return commandInput.getUsername() + " has added new merch successfully.";
             }
         }
-        return "The merch " + commandInput.getName() +" doesn't exist.";
+
+        return "The merch " + commandInput.getName() + " doesn't exist.";
     }
 
+    /**
+     * Retrieves the list of merch items owned by the user.
+     *
+     * @param commandInput The command input specifying the username.
+     * @return The list of merch items owned by the user.
+     */
     public static ArrayList<String> seeMerch(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
         return user.merches;
     }
 
+    /**
+     * Subscribes or unsubscribes the user to/from an artist or host.
+     *
+     * @param commandInput The command input specifying the subscription details.
+     * @return A message indicating the success or failure of the subscription action.
+     */
     public static String subscribe(final CommandInput commandInput) {
+        // Check if the user exists
         if (Admin.getUser(commandInput.getUsername()) == null) {
             return "The username " + commandInput.getUsername() + " doesn't exist.";
         }
+
         User user = Admin.getUser(commandInput.getUsername());
-        if (!user.getCurrentPage().equals(Enums.currentPage.ARTIST) && !user.getCurrentPage().equals(Enums.currentPage.HOST)) {
+
+        // Check if the user is on the artist or host page
+        if (!user.getCurrentPage().equals(Enums.currentPage.ARTIST)
+                && !user.getCurrentPage().equals(Enums.currentPage.HOST)) {
             return "To subscribe you need to be on the page of an artist or host.";
         }
+
         String unsubscribe = null;
+
+        // Check if the user is already subscribed to the current artist or host
         if (!user.getSubscribedTo().isEmpty()) {
             for (String name : user.subscribedTo) {
                 if (name.equals(user.select)) {
@@ -173,14 +216,17 @@ public class User implements UserVisitable {
                 }
             }
         }
+
         Artist artist = Admin.getArtist(user.select);
 
+        // Unsubscribe the user if already subscribed, otherwise subscribe
         if (unsubscribe != null) {
             user.getSubscribedTo().remove(unsubscribe);
             ArrayList<String> subscribers = artist.getSubscribers();
             subscribers.remove(user.getUsername());
             artist.setSubscribers(subscribers);
-            return commandInput.getUsername() + " unsubscribed from " + user.select + " successfully.";
+            return commandInput.getUsername() + " unsubscribed from "
+                    + user.select + " successfully.";
         }
 
         user.getSubscribedTo().add(user.select);
@@ -191,32 +237,48 @@ public class User implements UserVisitable {
         return commandInput.getUsername() + " subscribed to " + user.select + " successfully.";
     }
 
-    public static ArrayList<ObjectNode> showNotifications(CommandInput commandInput) {
+    /**
+     * Retrieves the notifications for the user and clears the notification list.
+     *
+     * @param commandInput The command input specifying the username.
+     * @return The list of notifications for the user.
+     */
+    public static ArrayList<ObjectNode> showNotifications(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
         ArrayList<ObjectNode> notifications = user.getNotifications();
         user.setNotifications(new ArrayList<>());
         return notifications;
     }
 
+    /**
+     * Updates the list of songs that the user has listened to based on the current playing song.
+     */
     public void updateListenSongs() {
         Player player = getPlayerInstance(this);
         PlayerSource source = Player.getPlayerSourceInstance(player);
+
         String songName = new String();
         Song songOnListen = null;
+
         if (source != null) {
             if (source.getAudioFile() != null) {
                 songName = source.getAudioFile().getName();
             }
         }
+
+        // Find the song being listened to in the list of available songs
         for (Song song : Admin.getSongs()) {
             if (song.getName().equals(songName)) {
                 songOnListen = song;
                 break;
             }
         }
+
         int containsSong = 1;
         int containsUser = 1;
+
         if (songOnListen != null) {
+            // Check if the user has already listened to this song
             for (SongWrapp song : listenedSongs) {
                 if (songOnListen.getName().equals(song.getSong().getName())) {
                     song.incrementListens();
@@ -226,9 +288,12 @@ public class User implements UserVisitable {
                 }
             }
 
+            // If the user hasn't listened to this song, add it to the list
             if (containsSong == 0) {
                 listenedSongs.add(new SongWrapp(songOnListen));
             }
+
+            // Update listeners and set 'wasPlayed' flag for the artist
             for (Artist artist : Admin.getArtists()) {
                 if (songOnListen.getArtist().equals(artist.getName())) {
                     for (UserWrapp user : artist.getListeners()) {
@@ -250,20 +315,126 @@ public class User implements UserVisitable {
         }
     }
 
+    /**
+     * Updates the list of episodes that the user has listened to based
+     * on the current playing podcast episode.
+     */
+    public void updateListenPodcast() {
+        Player player = getPlayerInstance(this);
+        PlayerSource source = Player.getPlayerSourceInstance(player);
+
+        String name = new String();
+        String nameEpisode = new String();
+        Podcast podcastOnListen = null;
+        Episode episodeOnListen = null;
+
+        if (source != null) {
+            if (source.getAudioCollection() != null) {
+                name = source.getAudioCollection().getName();
+            }
+        }
+
+        // Find the podcast being listened to in the list of available podcasts
+        for (Podcast podcast : Admin.getPodcasts()) {
+            if (name.equals(podcast.getName())) {
+                podcastOnListen = podcast;
+            }
+        }
+
+        if (source != null) {
+            if (source.getAudioFile() != null) {
+                nameEpisode = source.getAudioFile().getName();
+            }
+        }
+
+        // Find the episode being listened to in the list of available episodes
+        if (podcastOnListen != null) {
+            for (Episode episode : podcastOnListen.getEpisodes()) {
+                if (episode.getName().equals(nameEpisode)) {
+                    episodeOnListen = episode;
+                    break;
+                }
+            }
+        }
+
+        boolean containsEpisode = false;
+
+        if (episodeOnListen != null) {
+            // Check if the user has already listened to this episode
+            for (EpisodeWrapp episode : listenedEpisodes) {
+                if (nameEpisode.equals(episode.getEpisode().getName())) {
+                    episode.incrementListens();
+                    containsEpisode = true;
+                    break;
+                }
+            }
+
+            // If the user hasn't listened to this episode, add it to the list
+            if (!containsEpisode) {
+                listenedEpisodes.add(new EpisodeWrapp(episodeOnListen));
+            }
+
+            // Update listeners for the podcast and host
+            for (Host host : Admin.getHosts()) {
+                if (podcastOnListen.getOwner().equals(host.getName())) {
+                    boolean hostContainsEpisode = false;
+                    for (EpisodeWrapp episode : host.getListenedEpisodes()) {
+                        if (episode.getEpisode().getName().equals(nameEpisode)) {
+                            episode.incrementListens();
+                            hostContainsEpisode = true;
+                            break;
+                        }
+                    }
+                    if (!hostContainsEpisode) {
+                        host.getListenedEpisodes().add(new EpisodeWrapp(episodeOnListen));
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Retrieves the top 5 listened episodes by the user.
+     *
+     * @return The list of top 5 listened episodes.
+     */
+    public ArrayList<EpisodeWrapp> top5listenedEpisodes() {
+        // Sort the episodes based on the number of listens in descending order
+        Collections.sort(listenedEpisodes, Comparator
+                .comparingInt(EpisodeWrapp::getListens)
+                .reversed()
+                .thenComparing(episodeWrapp -> episodeWrapp.getEpisode().getName()));
+
+        // Create a list to store the top 5 episodes
+        ArrayList<EpisodeWrapp> top5Episodes = new ArrayList<>();
+
+        // Add up to the first 5 episodes to the list
+        for (int i = 0; i < Math.min(TOP_LIMIT, listenedEpisodes.size()); i++) {
+            top5Episodes.add(listenedEpisodes.get(i));
+        }
+        return top5Episodes;
+    }
+
+    /**
+     * Retrieves the top 5 liked songs by the user.
+     *
+     * @return The list of top 5 liked songs.
+     */
     public ArrayList<Song> top5LikedSongs() {
-        // Sort the liked songs in descending order based on some criteria (e.g., popularity, release date)
         Collections.sort(likedSongs, Comparator.comparingInt(Song::getLikes).reversed());
 
         // Create a list to store the top 5 liked songs
         ArrayList<Song> top5LikedSongsList = new ArrayList<>();
 
         // Add up to the first 5 liked songs to the list
-        for (int i = 0; i < Math.min(5, likedSongs.size()); i++) {
+        for (int i = 0; i < Math.min(TOP_LIMIT, likedSongs.size()); i++) {
             top5LikedSongsList.add(likedSongs.get(i));
         }
 
         return top5LikedSongsList;
     }
+
     /**
      * Accepts a deletion visitor and delegates the deletion operation to the appropriate method
      * based on the user type.
@@ -381,6 +552,7 @@ public class User implements UserVisitable {
 
         player.setSource(searchBar.getLastSelected(), searchBar.getLastSearchType());
         updateListenSongs();
+        updateListenPodcast();
         searchBar.clearSelection();
 
         player.pause();
@@ -752,5 +924,10 @@ public class User implements UserVisitable {
      */
     public void simulateTime(final int time) {
         player.simulatePlayer(time);
+    }
+
+    @Override
+    public void update(final ObjectNode notification) {
+        notifications.add(notification);
     }
 }

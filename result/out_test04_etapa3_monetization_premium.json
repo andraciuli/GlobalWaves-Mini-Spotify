@@ -1459,6 +1459,17 @@
   "timestamp" : 6172,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "jack29",
+  "timestamp" : 6201,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "carol19",
   "timestamp" : 6298,
@@ -1586,6 +1597,11 @@
   "user" : "carol19",
   "timestamp" : 6895,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "James Brown",
+  "timestamp" : 7034,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "carol19",
@@ -2211,6 +2227,28 @@
   "timestamp" : 9616,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "henry26",
+  "timestamp" : 9712,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "carol19",
+  "timestamp" : 9750,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "grace25",
   "timestamp" : 12124,
@@ -2354,6 +2392,11 @@
   "user" : "grace25",
   "timestamp" : 14523,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Pink Floyd",
+  "timestamp" : 14712,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "grace25",
@@ -2594,6 +2637,32 @@
   "user" : "grace25",
   "timestamp" : 20975,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Aretha Franklin",
+  "timestamp" : 21076,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "The Rolling Stones",
+  "timestamp" : 21076,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Frank Sinatra",
+  "timestamp" : 21076,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "grace25",
+  "timestamp" : 21176,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "endProgram",
   "result" : {

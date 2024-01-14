@@ -5,6 +5,7 @@ import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
 import app.audio.Files.Song;
 import app.audio.LibraryEntry;
+import app.observer.Subject;
 import app.player.Player;
 import app.player.PlayerSource;
 import app.utils.UserVisitable;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class Artist extends LibraryEntry implements UserVisitable {
+public class Artist extends LibraryEntry implements UserVisitable, Subject {
     public static ObjectMapper objectMapper = new ObjectMapper();
     @Getter
     private String name;
@@ -50,7 +51,7 @@ public class Artist extends LibraryEntry implements UserVisitable {
     @Getter
     @Setter
     private boolean wasPlayed;
-
+    private static final int TOP_LIMIT = 5;
 
     public Artist(final String name, final int age, final String city, final String userType) {
         super(name);
@@ -102,7 +103,7 @@ public class Artist extends LibraryEntry implements UserVisitable {
         ArrayList<User> top5FansList = new ArrayList<>();
 
         // Add up to the first 5 fans to the list
-        for (int i = 0; i < Math.min(5, listeners.size()); i++) {
+        for (int i = 0; i < Math.min(TOP_LIMIT, listeners.size()); i++) {
             top5FansList.add(listeners.get(i).getUser());
         }
 
@@ -175,23 +176,7 @@ public class Artist extends LibraryEntry implements UserVisitable {
         albumsToAdd.add(album);
         Admin.updateAlbumList(albumsToAdd);
 
-
-        //NEW
-        for (User user1 : Admin.getUsers()) {
-            if (!artist.getSubscribers().isEmpty()) {
-                for (String name : artist.getSubscribers()) {
-                    if (user1.getUsername().equals(name)) {
-                        ObjectNode notification = objectMapper.createObjectNode();
-                        notification.put("name", "New Album");
-                        notification.put("description", "New Album from " + commandInput.getUsername() + ".");
-                        ArrayList<ObjectNode> notifications = new ArrayList<>();
-                        notifications = user1.getNotifications();
-                        notifications.add(notification);
-                        user1.setNotifications(notifications);
-                    }
-                }
-            }
-        }
+        artist.notifyObserversAlbum();
         return commandInput.getUsername() + " has added new album successfully.";
     }
 
@@ -308,22 +293,7 @@ public class Artist extends LibraryEntry implements UserVisitable {
         artistFound.getEvents().add(new Event(commandInput.getUsername(), commandInput.getName(),
                 commandInput.getDescription(), commandInput.getDate()));
 
-        //NEW
-        for (User user1 : Admin.getUsers()) {
-            if (!artistFound.getSubscribers().isEmpty()) {
-                for (String name : artistFound.getSubscribers()) {
-                    if (user1.getUsername().equals(name)) {
-                        ObjectNode notification = objectMapper.createObjectNode();
-                        notification.put("name", "New Event");
-                        notification.put("description", "New Event from " + commandInput.getUsername() + ".");
-                        ArrayList<ObjectNode> notifications = new ArrayList<>();
-                        notifications = user1.getNotifications();
-                        notifications.add(notification);
-                        user1.setNotifications(notifications);
-                    }
-                }
-            }
-        }
+        artistFound.notifyObserversEvent();
 
         return commandInput.getUsername() + " has added new event successfully.";
 
@@ -399,24 +369,87 @@ public class Artist extends LibraryEntry implements UserVisitable {
         artistFound.getMerches().add(new Merch(commandInput.getUsername(), commandInput.getName(),
                 commandInput.getDescription(), commandInput.getPrice()));
 
-        //NEW
+        artistFound.notifyObserversMerch();
+        return commandInput.getUsername() + " has added new merchandise successfully.";
+    }
+
+    /**
+     * Notifies all subscribers about a new event from the observable object.
+     */
+    @Override
+    public void notifyObserversEvent() {
         for (User user1 : Admin.getUsers()) {
-            if (!artistFound.getSubscribers().isEmpty()) {
-                for (String name : artistFound.getSubscribers()) {
+            // Check if there are subscribers
+            if (!this.getSubscribers().isEmpty()) {
+                // Iterate through each subscriber
+                for (String name : this.getSubscribers()) {
+                    // Notify the subscriber if their username matches
                     if (user1.getUsername().equals(name)) {
+                        // Create a notification object
                         ObjectNode notification = objectMapper.createObjectNode();
-                        notification.put("name", "New Merchandise");
-                        notification.put("description", "New Merchandise from " + commandInput.getUsername() + ".");
-                        ArrayList<ObjectNode> notifications = new ArrayList<>();
-                        notifications = user1.getNotifications();
-                        notifications.add(notification);
-                        user1.setNotifications(notifications);
+                        notification.put("name", "New Event");
+                        notification.put("description", "New Event from " + this.getName() + ".");
+
+                        // Update the subscriber with the notification
+                        user1.update(notification);
                     }
                 }
             }
         }
-        return commandInput.getUsername() + " has added new merchandise successfully.";
     }
+
+    /**
+     * Notifies all subscribers about new merchandise from the observable object.
+     */
+    @Override
+    public void notifyObserversMerch() {
+        for (User user1 : Admin.getUsers()) {
+            // Check if there are subscribers
+            if (!this.getSubscribers().isEmpty()) {
+                // Iterate through each subscriber
+                for (String name : this.getSubscribers()) {
+                    // Notify the subscriber if their username matches
+                    if (user1.getUsername().equals(name)) {
+                        // Create a notification object
+                        ObjectNode notification = objectMapper.createObjectNode();
+                        notification.put("name", "New Merchandise");
+                        notification.put("description", "New Merchandise from "
+                                + this.getName() + ".");
+
+                        // Update the subscriber with the notification
+                        user1.update(notification);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Notifies all subscribers about a new album from the observable object.
+     */
+    @Override
+    public void notifyObserversAlbum() {
+        for (User user1 : Admin.getUsers()) {
+            // Check if there are subscribers
+            if (!this.getSubscribers().isEmpty()) {
+                // Iterate through each subscriber
+                for (String name : this.getSubscribers()) {
+                    // Notify the subscriber if their username matches
+                    if (user1.getUsername().equals(name)) {
+                        // Create a notification object
+                        ObjectNode notification = objectMapper.createObjectNode();
+                        notification.put("name", "New Album");
+                        notification.put("description", "New Album from " + this.getName() + ".");
+
+                        // Update the subscriber with the notification
+                        user1.update(notification);
+                    }
+                }
+            }
+        }
+    }
+
+
 
     /**
      * Represents an event associated with an artist,
@@ -430,6 +463,11 @@ public class Artist extends LibraryEntry implements UserVisitable {
         private String description;
         @Getter
         private String date;
+        private static final int MONTH_LIMIT = 12;
+        private static final int DAY_LIMIT = 31;
+        private static final int YEAR_UPPER_LIMIT = 2023;
+        private static final int YEAR_LOWER_LIMIT = 1900;
+        private static final int FEB_LIMIT = 28;
 
         public Event(final String artist, final String name,
                      final String description, final String date) {
@@ -460,13 +498,13 @@ public class Artist extends LibraryEntry implements UserVisitable {
 
                 // Validate February: if the month is February,
                 // ensure the day is not greater than 28
-                if (month == 2 && day > 28) {
+                if (month == 2 && day > FEB_LIMIT) {
                     return false;
                 }
 
                 // Validate month (1 to 12), day (1 to 31), and year (1900 to 2023)
-                return month >= 1 && month <= 12 && day >= 1 && day <= 31
-                        && year >= 1900 && year <= 2023;
+                return month >= 1 && month <= MONTH_LIMIT && day >= 1 && day <= DAY_LIMIT
+                        && year >= YEAR_LOWER_LIMIT && year <= YEAR_UPPER_LIMIT;
             } catch (Exception e) {
                 // Catch any exceptions during the parsing or validation process and return false
                 return false;

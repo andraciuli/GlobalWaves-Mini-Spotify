@@ -431,6 +431,22 @@
   "timestamp" : 12393,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Pink Floyd",
+  "timestamp" : 12427,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "alice22",
+  "timestamp" : 12527,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "endProgram",
   "result" : {
     "Pink Floyd" : {

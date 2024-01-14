@@ -191,6 +191,37 @@
     "paused" : true
   }
 }, {
+  "command" : "wrapped",
+  "user" : "alice22",
+  "timestamp" : 4000,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : {
+      "The Power of Design" : 2,
+      "Elon Musk Returns" : 1,
+      "Ghosts" : 1,
+      "Salman Rushdie Reads Gabriel Garcia Marquez" : 1
+    }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "Guy Raz",
+  "timestamp" : 4000,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Jad Abumrad and Robert Krulwich",
+  "timestamp" : 4000,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Joe Rogan",
+  "timestamp" : 4000,
+  "result" : { }
+}, {
   "command" : "endProgram",
   "result" : { }
 } ]

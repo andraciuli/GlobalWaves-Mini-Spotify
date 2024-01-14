@@ -1,7 +1,6 @@
 package app.pageSystem;
 
 import app.Admin;
-import app.CommandRunner;
 import app.audio.Collections.Album;
 import app.audio.Collections.Playlist;
 import app.audio.Collections.Podcast;
@@ -108,8 +107,10 @@ public final class PageCommands {
                 ArrayList<String> followedPlaylists = PageCommands.getFollowedPlaylists(user);
                 result.append("Liked songs:\n\t").append(likedSongs)
                         .append("\n\nFollowed playlists:\n\t").append(followedPlaylists)
-                        .append("\n\nSong recommendations:\n\t[").append(user.getSongRecommandation())
-                        .append("]\n\nPlaylists recommendations:\n\t[").append(user.getPlaylistRecommandationName()).append("]");
+                        .append("\n\nSong recommendations:\n\t[")
+                        .append(user.getSongRecommandation())
+                        .append("]\n\nPlaylists recommendations:\n\t[")
+                        .append(user.getPlaylistRecommandationName()).append("]");
                 break;
             case ARTIST:
                 Artist artist = Admin.getArtist(selectedArtist);
@@ -231,31 +232,37 @@ public final class PageCommands {
                 + commandInput.getNextPage() + " successfully.";
     }
 
+    /**
+     * Moves the user to the previous page.
+     *
+     * @param commandInput The input containing the user's command and username.
+     * @return A message indicating the success or failure of the navigation.
+     */
     public static String previousPage(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
         if (user.getPreviousPage().equals(Enums.currentPage.DEFAULT)) {
             return "There are no pages left to go back.";
         }
-        user.setNextPage(user.getCurrentPage());
-        //user.setCurrentPage(user.getPreviousPage());
-        int index = user.getIstoricPages().indexOf(user.getCurrentPage());
-        if (index != -1 && index > 0) {
-            user.setCurrentPage(user.getIstoricPages().get(index - 1));
-        } else {
-            return "There are no pages left to go back.";
-        }
-
-        return "The user " + commandInput.getUsername() + " has navigated successfully to the previous page.";
+        PageNavigation pageNavigation = new PageNavigation();
+        pageNavigation.undo(user);
+        return "The user " + commandInput.getUsername()
+                + " has navigated successfully to the previous page.";
     }
 
+    /**
+     * Moves the user to the next page.
+     *
+     * @param commandInput The input containing the user's command and username.
+     * @return A message indicating the success or failure of the navigation.
+     */
     public static String nextPage(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
         if (user.getNextPage().equals(Enums.currentPage.DEFAULT)) {
             return "There are no pages left to go forward.";
         }
-        user.setPreviousPage(user.getCurrentPage());
-        user.setCurrentPage(user.getNextPage());
-        user.setNextPage(Enums.currentPage.DEFAULT);
-        return "The user " + commandInput.getUsername() + " has navigated successfully to the next page.";
+        PageNavigation pageNavigation = new PageNavigation();
+        pageNavigation.execute(user);
+        return "The user " + commandInput.getUsername()
+                + " has navigated successfully to the next page.";
     }
 }

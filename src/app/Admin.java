@@ -180,6 +180,12 @@ public final class Admin {
         return null;
     }
 
+    /**
+     * Retrieves a song with the specified name.
+     *
+     * @param songName The name of the song to retrieve.
+     * @return The {@link Song} object with the specified name, or {@code null} if not found.
+     */
     public static Song getSong(final String songName) {
         for (Song song : songs) {
             if (song.getName().equals(songName)) {
@@ -189,6 +195,12 @@ public final class Admin {
         return null;
     }
 
+    /**
+     * Retrieves a podcast with the specified name.
+     *
+     * @param podcastName The name of the podcast to retrieve.
+     * @return The {@link Podcast} object with the specified name, or {@code null} if not found.
+     */
     public static Podcast getPodcast(final String podcastName) {
         for (Podcast podcast : podcasts) {
             if (podcast.getName().equals(podcastName)) {
@@ -657,24 +669,35 @@ public final class Admin {
         return result;
     }
 
+    /**
+     * Ends the program and generates a ranking of artists based on revenue and play history.
+     *
+     * @return An {@link ObjectNode} containing the ranking information for artists.
+     */
     public static ObjectNode endProgram() {
         ObjectNode result = objectMapper.createObjectNode();
         ArrayList<Artist> rankedArtists = new ArrayList<>();
+
+        // Filter artists with non-zero merchRevenue, songRevenue, or play history
         for (Artist artist : getArtists()) {
-            if (artist.getMerchRevenue() != 0 || artist.getSongRevenue() != 0 || artist.isWasPlayed()) {
+            if (artist.getMerchRevenue() != 0 || artist.getSongRevenue() != 0
+                    || artist.isWasPlayed()) {
                 rankedArtists.add(artist);
             }
         }
+
+        // Sort the rankedArtists
         rankedArtists.sort((a1, a2) -> {
             if (a1.getMerchRevenue() != 0 && a2.getMerchRevenue() != 0) {
                 // Sort by merchRevenue in descending order
                 return Double.compare(a2.getMerchRevenue(), a1.getMerchRevenue());
             } else {
-                // Sort alphabetically
+                // Sort alphabetically by artist name
                 return a1.getName().compareToIgnoreCase(a2.getName());
             }
         });
 
+        // Generate ranking information for each artist
         int ranking = 1;
         for (Artist artist : rankedArtists) {
             ObjectNode artistNode = objectMapper.createObjectNode();
@@ -683,12 +706,13 @@ public final class Admin {
             artistNode.put("ranking", ranking++);
             artistNode.put("mostProfitableSong", "N/A");
 
-            // Add the artist node to the array
+            // Add the artist node to the result ObjectNode
             result.putPOJO(artist.getName(), artistNode);
         }
 
         return result;
     }
+
 
     /**
      * Reset.

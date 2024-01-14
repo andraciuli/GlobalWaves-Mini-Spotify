@@ -7,6 +7,8 @@ import app.audio.LibraryEntry;
 import app.player.Player;
 import app.player.PlayerSource;
 import app.utils.UserVisitable;
+import app.wrapped.EpisodeWrapp;
+import app.wrapped.UserWrapp;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
 import fileio.input.EpisodeInput;
@@ -32,6 +34,14 @@ public class Host extends LibraryEntry implements UserVisitable {
     private ArrayList<Podcast> podcasts;
     @Getter
     private ArrayList<Announcement> announcements;
+    @Getter
+    private ArrayList<EpisodeWrapp> listenedEpisodes;
+    @Getter
+    private ArrayList<UserWrapp> listeners;
+    private int numberListeners;
+    public void incrementListens() {
+        numberListeners++;
+    }
 
 
     public Host(final String name, final int age, final String city, final String userType) {
@@ -42,6 +52,8 @@ public class Host extends LibraryEntry implements UserVisitable {
         this.userType = userType;
         podcasts = new ArrayList<>();
         announcements = new ArrayList<>();
+        listenedEpisodes = new ArrayList<>();
+        listeners = new ArrayList<>();
     }
 
     /**

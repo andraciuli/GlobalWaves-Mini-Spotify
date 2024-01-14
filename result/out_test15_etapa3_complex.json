@@ -4156,6 +4156,11 @@
   "timestamp" : 4023,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Marvin Gaye",
+  "timestamp" : 4051,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 4051,
@@ -5998,6 +6003,11 @@
   "user" : "jack29",
   "timestamp" : 6617,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Led Zeppelin",
+  "timestamp" : 6641,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -9949,6 +9959,11 @@
   "timestamp" : 10435,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Michael Jackson",
+  "timestamp" : 10441,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 10441,
@@ -11563,6 +11578,11 @@
   "user" : "grace25",
   "timestamp" : 12528,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Chuck Berry",
+  "timestamp" : 12537,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -13441,6 +13461,11 @@
   "timestamp" : 14895,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Madonna",
+  "timestamp" : 14948,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 14948,
@@ -15216,6 +15241,11 @@
   "user" : "carol19",
   "timestamp" : 17444,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "ABBA",
+  "timestamp" : 17448,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "henry26",
@@ -18714,6 +18744,11 @@
   "timestamp" : 21529,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Taylor Swift",
+  "timestamp" : 21532,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 21532,
@@ -19162,6 +19197,17 @@
   "timestamp" : 22119,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "carol19",
+  "timestamp" : 22130,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "frank21",
   "timestamp" : 22166,
@@ -19370,6 +19416,17 @@
   "timestamp" : 22578,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "bob35",
+  "timestamp" : 22598,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 22653,
@@ -19513,6 +19570,17 @@
   "user" : "david27",
   "timestamp" : 22901,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "alice22",
+  "timestamp" : 22932,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "irene33",
@@ -19913,6 +19981,11 @@
   "user" : "emily30",
   "timestamp" : 23861,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "U2",
+  "timestamp" : 23920,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -20714,6 +20787,17 @@
   "timestamp" : 25743,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "emily30",
+  "timestamp" : 25802,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "irene33",
   "timestamp" : 25808,
@@ -20745,6 +20829,11 @@
   "user" : "frank21",
   "timestamp" : 25825,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Jimi Hendrix",
+  "timestamp" : 25893,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -20889,6 +20978,17 @@
   "user" : "frank21",
   "timestamp" : 26391,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "irene33",
+  "timestamp" : 26457,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "frank21",
@@ -21487,6 +21587,17 @@
   "timestamp" : 28439,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "frank21",
+  "timestamp" : 28471,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 28496,
@@ -21806,6 +21917,11 @@
   "user" : "grace25",
   "timestamp" : 29525,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Eminem",
+  "timestamp" : 29652,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -22585,6 +22701,17 @@
   "timestamp" : 32503,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "henry26",
+  "timestamp" : 32557,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 32577,
@@ -22632,6 +22759,17 @@
   "user" : "jack29",
   "timestamp" : 32702,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "david27",
+  "timestamp" : 32802,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "grace25",
@@ -22809,6 +22947,17 @@
   "timestamp" : 33613,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "grace25",
+  "timestamp" : 33646,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "jack29",
   "timestamp" : 33697,
@@ -22888,6 +23037,11 @@
   "user" : "jack29",
   "timestamp" : 34002,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Johnny Cash",
+  "timestamp" : 34057,
+  "result" : { }
 }, {
   "command" : "search",
   "user" : "jack29",
@@ -23081,6 +23235,11 @@
   "timestamp" : 36813,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Fleetwood Mac",
+  "timestamp" : 36958,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "jack29",
   "timestamp" : 36958,
@@ -23240,6 +23399,82 @@
   "user" : "jack29",
   "timestamp" : 38055,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Nothing But Thieves",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Stevie Wonder",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Bob Marley",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Rihanna",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "David Bowie",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Ray Charles",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Imagine Dragons",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Whitney Houston",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "The Doors",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Radiohead",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Aretha Franklin",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "The Beach Boys",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "The Police",
+  "timestamp" : 38196,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "jack29",
+  "timestamp" : 38296,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "endProgram",
   "result" : {

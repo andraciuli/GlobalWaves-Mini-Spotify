@@ -351,6 +351,72 @@
   "timestamp" : 10,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "carol19",
+  "timestamp" : 110,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "bob35",
+  "timestamp" : 110,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "frank21",
+  "timestamp" : 110,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "irene33",
+  "timestamp" : 227,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "emily30",
+  "timestamp" : 242,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
+  "command" : "wrapped",
+  "user" : "grace25",
+  "timestamp" : 242,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "henry26",
   "timestamp" : 319,
@@ -366,6 +432,17 @@
   "user" : "henry26",
   "timestamp" : 319,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "henry26",
+  "timestamp" : 564,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -383,6 +460,17 @@
   "timestamp" : 1380,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "alice22",
+  "timestamp" : 1590,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "jack29",
   "timestamp" : 1624,
@@ -399,6 +487,17 @@
   "timestamp" : 1624,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "david27",
+  "timestamp" : 1647,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
+}, {
   "command" : "search",
   "user" : "jack29",
   "timestamp" : 2995,
@@ -414,6 +513,22 @@
   "user" : "jack29",
   "timestamp" : 2995,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Radiohead",
+  "timestamp" : 3111,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "jack29",
+  "timestamp" : 3211,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "endProgram",
   "result" : {

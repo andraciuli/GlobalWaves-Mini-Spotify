@@ -9,6 +9,7 @@ import app.user.Artist;
 import app.user.Host;
 import app.user.User;
 import app.utils.Enums;
+import app.wrapped.Wrapped;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
@@ -753,6 +754,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "buyMerch" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode buyMerch(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", commandInput.getCommand());
@@ -762,6 +769,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "seeMerch" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode seeMerch(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", commandInput.getCommand());
@@ -781,6 +794,11 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "endProgram" command.
+     *
+     * @return The ObjectNode response.
+     */
     public static ObjectNode endProgram() {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "endProgram");
@@ -788,6 +806,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "subscribe" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode subscribe(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "subscribe");
@@ -797,6 +821,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "getNotifications" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode getNotifications(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "getNotifications");
@@ -806,6 +836,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "updateRecommendations" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode updateRecommendations(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "updateRecommendations");
@@ -815,6 +851,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "previousPage" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode previousPage(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "previousPage");
@@ -824,6 +866,12 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "nextPage" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode nextPage(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "nextPage");
@@ -833,12 +881,33 @@ public class CommandRunner {
         return objectNode;
     }
 
+    /**
+     * Creates an ObjectNode response for the "loadRecommendations" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
     public static ObjectNode loadRecommendations(final CommandInput commandInput) {
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", "loadRecommendations");
         objectNode.put("user", commandInput.getUsername());
         objectNode.put("timestamp", commandInput.getTimestamp());
         objectNode.putPOJO("message", UpdateRecommendations.loadRecommendation(commandInput));
+        return objectNode;
+    }
+
+    /**
+     * Creates an ObjectNode response for the "wrapped" command.
+     *
+     * @param commandInput The input containing command details.
+     * @return The ObjectNode response.
+     */
+    public static ObjectNode wrapped(final CommandInput commandInput) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("command", "wrapped");
+        objectNode.put("user", commandInput.getUsername());
+        objectNode.put("timestamp", commandInput.getTimestamp());
+        objectNode.putPOJO("result", Wrapped.wrapped(commandInput));
         return objectNode;
     }
 }

@@ -956,6 +956,11 @@
   "timestamp" : 4825,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Stevie Wonder",
+  "timestamp" : 4927,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "grace25",
   "timestamp" : 4927,
@@ -1596,6 +1601,11 @@
   "timestamp" : 10099,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "Prince",
+  "timestamp" : 10355,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 10355,
@@ -2043,6 +2053,17 @@
   "user" : "david27",
   "timestamp" : 12571,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "irene33",
+  "timestamp" : 12641,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -2524,6 +2545,11 @@
   "timestamp" : 14308,
   "message" : "Playback loaded successfully."
 }, {
+  "command" : "wrapped",
+  "user" : "The Rolling Stones",
+  "timestamp" : 14425,
+  "result" : { }
+}, {
   "command" : "search",
   "user" : "david27",
   "timestamp" : 14425,
@@ -2539,6 +2565,17 @@
   "user" : "david27",
   "timestamp" : 14425,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "grace25",
+  "timestamp" : 14442,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "search",
   "user" : "david27",
@@ -2795,6 +2832,27 @@
   "user" : "david27",
   "timestamp" : 17782,
   "message" : "Playback loaded successfully."
+}, {
+  "command" : "wrapped",
+  "user" : "Joni Mitchell",
+  "timestamp" : 17942,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "Pink Floyd",
+  "timestamp" : 17942,
+  "result" : { }
+}, {
+  "command" : "wrapped",
+  "user" : "david27",
+  "timestamp" : 18042,
+  "result" : {
+    "topArtists" : { },
+    "topGenres" : { },
+    "topSongs" : { },
+    "topAlbums" : { },
+    "topEpisodes" : { }
+  }
 }, {
   "command" : "endProgram",
   "result" : {

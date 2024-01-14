@@ -5,17 +5,41 @@ import app.audio.Collections.Playlist;
 import app.audio.Files.Song;
 import app.player.Player;
 import app.player.PlayerSource;
+import app.sortStrategy.SortByLikes;
 import app.user.Artist;
 import app.user.User;
 import fileio.input.CommandInput;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 import static app.user.User.getPlayerInstance;
 
-public class UpdateRecommendations {
+/**
+ * The {@code UpdateRecommendations} class provides methods for
+ * updating and loading user recommendations.
+ */
+public final class UpdateRecommendations {
+    private static final int TOP_LIMIT = 5;
+    private static final int DURATION_SONG = 30;
+    private static final int TOP_LIMIT_SEC_GENRE = 3;
+    private static final int TOP_LIMIT_THIRD_GENRE = 2;
 
-    private static void fansPlaylist(User user) {
+    private UpdateRecommendations() {
+        // Private constructor to prevent instantiation of the utility class.
+    }
+
+    /**
+     * Generates a playlist based on the top 5 liked songs of the artist's top 5 fans.
+     *
+     * @param user The user for whom the playlist is generated.
+     */
+    private static void fansPlaylist(final User user) {
         Player player = getPlayerInstance(user);
         PlayerSource source = Player.getPlayerSourceInstance(player);
         Song songOnListen = null;
@@ -32,11 +56,12 @@ public class UpdateRecommendations {
         }
         Set<Song> uniqueSongsSet = new HashSet<>(playlist);
         playlist = new ArrayList<>(uniqueSongsSet);
-        Collections.sort(playlist, Comparator.comparingInt(Song::getLikes).reversed());
+        SortByLikes sort = new SortByLikes();
+        sort.sort(playlist);
         ArrayList<Song> fansPlaylist = new ArrayList<>();
 
         // Add up to the first 5 liked songs to the list
-        for (int i = 0; i < Math.min(5, playlist.size()); i++) {
+        for (int i = 0; i < Math.min(TOP_LIMIT, playlist.size()); i++) {
             fansPlaylist.add(playlist.get(i));
         }
         user.setPlaylistRecommandation(fansPlaylist);
@@ -44,7 +69,13 @@ public class UpdateRecommendations {
         user.setPlaylistRecommandationName(playlistName);
     }
 
-    private static void randomSong(User user) {
+    /**
+     * Generates a random song recommendation based on the genre of the
+     * currently playing song.
+     *
+     * @param user The user for whom the recommendation is generated.
+     */
+    private static void randomSong(final User user) {
         Player player = getPlayerInstance(user);
         PlayerSource source = Player.getPlayerSourceInstance(player);
         Song songOnLoad = null;
@@ -60,8 +91,10 @@ public class UpdateRecommendations {
                     songs.add(song);
                 }
             }
-            if (songOnLoad.getDuration() - user.getPlayerStats(user).getRemainedTime() >= 30) {
-                int timeListened = songOnLoad.getDuration() - user.getPlayerStats(user).getRemainedTime();
+            if (songOnLoad.getDuration() - user.getPlayerStats(user).getRemainedTime()
+                    >= DURATION_SONG) {
+                int timeListened = songOnLoad.getDuration()
+                        - user.getPlayerStats(user).getRemainedTime();
                 Random randomListen = new Random(timeListened);
                 int index = randomListen.nextInt(songs.size());
                 user.setSongRecommandation(songs.get(index).getName());
@@ -69,7 +102,15 @@ public class UpdateRecommendations {
         }
     }
 
-    private static List<Song> getGenreSongs(ArrayList<Song> allSongs, String genre) {
+    /**
+     * Returns a list of songs that belong to a specific genre from the user's
+     * liked songs, playlists, and followed playlists.
+     *
+     * @param allSongs The list of all songs from liked songs, playlists, and followed playlists.
+     * @param genre    The genre for which to filter songs.
+     * @return A list of songs belonging to the specified genre.
+     */
+    private static List<Song> getGenreSongs(final ArrayList<Song> allSongs, final String genre) {
         List<Song> genreSongs = new ArrayList<>();
         for (Song song : allSongs) {
             if (song.getGenre().equals(genre)) {
@@ -79,7 +120,14 @@ public class UpdateRecommendations {
         return genreSongs;
     }
 
-    private static void randomPlaylist(User user) {
+    /**
+     * Generates a random playlist based on the user's liked songs,
+     * playlists, and followed playlists.
+     * The playlist includes top songs from the user's most frequently liked genres.
+     *
+     * @param user The user for whom the playlist is generated.
+     */
+    private static void randomPlaylist(final User user) {
         ArrayList<Song> allSongs = new ArrayList<>();
         ArrayList<Song> randomPlaylist = new ArrayList<>();
 
@@ -93,60 +141,62 @@ public class UpdateRecommendations {
             allSongs.addAll(playlist.getSongs());
         }
 
-        // Crează un map pentru a număra genurile
+        // Create a map to count genres
         Map<String, Integer> genreCountMap = new HashMap<>();
 
-        // Numără melodiile pentru fiecare gen
+        // Count songs for each genre
         for (Song song : allSongs) {
             String genre = song.getGenre();
             genreCountMap.put(genre, genreCountMap.getOrDefault(genre, 0) + 1);
         }
 
-        // Sortează genurile în funcție de numărul de melodii
+        // Sort genres based on the number of songs
         List<Map.Entry<String, Integer>> sortedGenres = new ArrayList<>(genreCountMap.entrySet());
         sortedGenres.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        SortByLikes sort = new SortByLikes();
 
         if (sortedGenres.size() >= 1) {
-            // Obține primul gen
+            // Get the first genre
             String firstGenre = sortedGenres.get(0).getKey();
 
-            // Obține lista de melodii din primul gen
+            // Get the list of songs from the first genre
             List<Song> songsInFirstGenre = getGenreSongs(allSongs, firstGenre);
-            Collections.sort(songsInFirstGenre, Comparator.comparingInt(Song::getLikes).reversed());
-            List<Song> top5SongsInFirstGenre = songsInFirstGenre.subList(0, Math.min(5, songsInFirstGenre.size()));
+            sort.sort(songsInFirstGenre);
+            List<Song> top5SongsInFirstGenre = songsInFirstGenre.subList(0,
+                    Math.min(TOP_LIMIT, songsInFirstGenre.size()));
             randomPlaylist.addAll(top5SongsInFirstGenre);
         }
 
         if (sortedGenres.size() >= 2) {
-            // Obține al doilea gen
+            // Get the second genre
             String secondGenre = sortedGenres.get(1).getKey();
 
-            // Obține lista de melodii din al doilea gen
+            // Get the list of songs from the second genre
             List<Song> songsInSecondGenre = getGenreSongs(allSongs, secondGenre);
 
-            // Sortează lista în funcție de numărul de like-uri
-            Collections.sort(songsInSecondGenre, Comparator.comparingInt(Song::getLikes).reversed());
+            sort.sort(songsInSecondGenre);
 
-            // Adaugă primele 3 melodii din songsInSecondGenre în playlist
-            List<Song> top3SongsInSecondGenre = songsInSecondGenre.subList(0, Math.min(3, songsInSecondGenre.size()));
+            // Add the top 3 songs from songsInSecondGenre to the playlist
+            List<Song> top3SongsInSecondGenre = songsInSecondGenre.subList(0,
+                    Math.min(TOP_LIMIT_SEC_GENRE, songsInSecondGenre.size()));
 
             randomPlaylist.addAll(top3SongsInSecondGenre);
         }
 
-        if (sortedGenres.size() >= 3) {
-            // Obține al treilea gen
+        if (sortedGenres.size() >= TOP_LIMIT_SEC_GENRE) {
+            // Get the third genre
             String thirdGenre = sortedGenres.get(2).getKey();
 
-            // Obține lista de melodii din al treilea gen
+            // Get the list of songs from the third genre
             List<Song> songsInThirdGenre = getGenreSongs(allSongs, thirdGenre);
 
-            // Sortează lista în funcție de numărul de like-uri
-            Collections.sort(songsInThirdGenre, Comparator.comparingInt(Song::getLikes).reversed());
+            sort.sort(songsInThirdGenre);
 
-            // Adaugă primele 2 melodii din songsInThirdGenre în playlist
-            List<Song> top2SongsInThirdGenre = songsInThirdGenre.subList(0, Math.min(2, songsInThirdGenre.size()));
+            // Add the top 2 songs from songsInThirdGenre to the playlist
+            List<Song> top2SongsInThirdGenre = songsInThirdGenre.subList(0,
+                    Math.min(TOP_LIMIT_THIRD_GENRE, songsInThirdGenre.size()));
 
-            // Adaugă playlist-ul la lista de playlist-uri
+            // Add the playlist to the list of playlists
             randomPlaylist.addAll(top2SongsInThirdGenre);
         }
         user.setPlaylistRecommandation(randomPlaylist);
@@ -154,7 +204,13 @@ public class UpdateRecommendations {
         user.setPlaylistRecommandationName(playlistName);
     }
 
-    public static String updateRecommendations(CommandInput commandInput) {
+    /**
+     * Updates user recommendations based on the given command input.
+     *
+     * @param commandInput The command input specifying the type of recommendation to update.
+     * @return A message indicating the success of the recommendation update.
+     */
+    public static String updateRecommendations(final CommandInput commandInput) {
         if (Admin.getUser(commandInput.getUsername()) == null) {
             return "The username " + commandInput.getUsername() + " doesn't exist.";
         }
@@ -168,11 +224,21 @@ public class UpdateRecommendations {
             case "fans_playlist" -> fansPlaylist(user);
             case "random_song" -> randomSong(user);
             case "random_playlist" -> randomPlaylist(user);
+            default -> throw new IllegalArgumentException("Invalid recommendation type: "
+                    + commandInput.getRecommendationType());
         }
-        return "The recommendations for user " + user.getUsername() + " have been updated successfully.";
+        return "The recommendations for user " + user.getUsername()
+                + " have been updated successfully.";
     }
 
-    public static String loadRecommendation(CommandInput commandInput) {
+    /**
+     * Loads the user's song recommendation into the player's source for playback.
+     *
+     * @param commandInput The command input specifying the user for whom to load
+     *                     the recommendation.
+     * @return A message indicating the success of the recommendation loading.
+     */
+    public static String loadRecommendation(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
         if (user.getSongRecommandation() == null) {
             return "You can't load an empty audio collection!";
