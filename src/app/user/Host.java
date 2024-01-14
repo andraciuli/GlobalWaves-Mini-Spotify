@@ -15,13 +15,12 @@ import fileio.input.EpisodeInput;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static app.user.Artist.objectMapper;
 
 public class Host extends LibraryEntry implements UserVisitable {
+    private static final int TOP_LIMIT = 5;
     @Getter
     private String name;
     @Getter
@@ -38,9 +37,18 @@ public class Host extends LibraryEntry implements UserVisitable {
     private ArrayList<EpisodeWrapp> listenedEpisodes;
     @Getter
     private ArrayList<UserWrapp> listeners;
+    @Getter
     private int numberListeners;
     public void incrementListens() {
         numberListeners++;
+    }
+    public boolean containsListener(String name) {
+        for (UserWrapp userWrapp : listeners) {
+            if (userWrapp.getUser().getUsername().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -78,6 +86,28 @@ public class Host extends LibraryEntry implements UserVisitable {
         }
         // No duplicates found
         return false;
+    }
+
+    /**
+     * Retrieves the top 5 listened episodes of the host.
+     *
+     * @return The list of top 5 listened episodes.
+     */
+    public ArrayList<EpisodeWrapp> top5listenedEpisodes() {
+        // Sort the episodes based on the number of listens in descending order
+        Collections.sort(listenedEpisodes, Comparator
+                .comparingInt(EpisodeWrapp::getListens)
+                .reversed()
+                .thenComparing(episodeWrapp -> episodeWrapp.getEpisode().getName()));
+
+        // Create a list to store the top 5 episodes
+        ArrayList<EpisodeWrapp> top5Episodes = new ArrayList<>();
+
+        // Add up to the first 5 episodes to the list
+        for (int i = 0; i < Math.min(TOP_LIMIT, listenedEpisodes.size()); i++) {
+            top5Episodes.add(listenedEpisodes.get(i));
+        }
+        return top5Episodes;
     }
 
     /**

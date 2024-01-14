@@ -224,8 +224,7 @@ public final class UpdateRecommendations {
             case "fans_playlist" -> fansPlaylist(user);
             case "random_song" -> randomSong(user);
             case "random_playlist" -> randomPlaylist(user);
-            default -> throw new IllegalArgumentException("Invalid recommendation type: "
-                    + commandInput.getRecommendationType());
+            default -> System.out.println("Invalid recommendation type");
         }
         return "The recommendations for user " + user.getUsername()
                 + " have been updated successfully.";

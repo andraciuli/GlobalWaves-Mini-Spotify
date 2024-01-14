@@ -382,9 +382,9 @@ public class Artist extends LibraryEntry implements UserVisitable, Subject {
             // Check if there are subscribers
             if (!this.getSubscribers().isEmpty()) {
                 // Iterate through each subscriber
-                for (String name : this.getSubscribers()) {
+                for (String nameSub : this.getSubscribers()) {
                     // Notify the subscriber if their username matches
-                    if (user1.getUsername().equals(name)) {
+                    if (user1.getUsername().equals(nameSub)) {
                         // Create a notification object
                         ObjectNode notification = objectMapper.createObjectNode();
                         notification.put("name", "New Event");
@@ -407,9 +407,9 @@ public class Artist extends LibraryEntry implements UserVisitable, Subject {
             // Check if there are subscribers
             if (!this.getSubscribers().isEmpty()) {
                 // Iterate through each subscriber
-                for (String name : this.getSubscribers()) {
+                for (String nameSub : this.getSubscribers()) {
                     // Notify the subscriber if their username matches
-                    if (user1.getUsername().equals(name)) {
+                    if (user1.getUsername().equals(nameSub)) {
                         // Create a notification object
                         ObjectNode notification = objectMapper.createObjectNode();
                         notification.put("name", "New Merchandise");
@@ -433,9 +433,9 @@ public class Artist extends LibraryEntry implements UserVisitable, Subject {
             // Check if there are subscribers
             if (!this.getSubscribers().isEmpty()) {
                 // Iterate through each subscriber
-                for (String name : this.getSubscribers()) {
+                for (String nameSub : this.getSubscribers()) {
                     // Notify the subscriber if their username matches
-                    if (user1.getUsername().equals(name)) {
+                    if (user1.getUsername().equals(nameSub)) {
                         // Create a notification object
                         ObjectNode notification = objectMapper.createObjectNode();
                         notification.put("name", "New Album");

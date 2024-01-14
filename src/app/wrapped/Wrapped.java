@@ -1,6 +1,7 @@
 package app.wrapped;
 
 import app.Admin;
+import app.user.Host;
 import app.user.User;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.CommandInput;
@@ -25,7 +26,8 @@ public class Wrapped {
         ObjectNode result = objectMapper.createObjectNode();
 
         switch (type) {
-            case "user" -> result = wrapUser(user);
+            case "user" -> result = wrappUser(user);
+            case "host" -> result = wrappHost(user);
         }
 
         return result;
@@ -37,7 +39,7 @@ public class Wrapped {
      * @param user The user for whom to generate wrapped information.
      * @return An ObjectNode containing wrapped user information.
      */
-    public static ObjectNode wrapUser(final User user) {
+    public static ObjectNode wrappUser(final User user) {
         ObjectNode result = objectMapper.createObjectNode();
         ObjectNode topArtists = objectMapper.createObjectNode();
         ObjectNode topGenres = objectMapper.createObjectNode();
@@ -59,6 +61,27 @@ public class Wrapped {
 
         result.putPOJO("topEpisodes", topEpisodesNode);
 
+        return result;
+    }
+
+    /**
+     * Generates a wrapped representation of host information.
+     *
+     * @param user The host for whom to generate wrapped information.
+     * @return An ObjectNode containing wrapped user information.
+     */
+    public static ObjectNode wrappHost(final User user) {
+        ObjectNode result = objectMapper.createObjectNode();
+        ObjectNode topEpisodes = objectMapper.createObjectNode();
+        Host host = Admin.getHost(user.getUsername());
+        for (EpisodeWrapp episodeWrapp : host.top5listenedEpisodes()) {
+            String episodeName = episodeWrapp.getEpisode().getName();
+            int listens = episodeWrapp.getListens();
+
+            topEpisodes.put(episodeName, listens);
+        }
+        result.putPOJO("topEpisodes", topEpisodes);
+        result.put("listeners", host.getNumberListeners());
         return result;
     }
 }

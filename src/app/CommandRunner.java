@@ -35,7 +35,7 @@ public class CommandRunner {
         if (user.getConnectionStatus().equals(Enums.ConnectionStatus.OFFLINE)) {
             message = user.getUsername() + " is offline.";
         } else {
-            results = user.search(filters, type);
+            results = user.search(filters, type, commandInput);
             message = "Search returned " + results.size() + " results";
         }
         ObjectNode objectNode = objectMapper.createObjectNode();
@@ -77,7 +77,7 @@ public class CommandRunner {
      */
     public static ObjectNode load(final CommandInput commandInput) {
         User user = Admin.getUser(commandInput.getUsername());
-        String message = user.load();
+        String message = user.load(commandInput);
 
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("command", commandInput.getCommand());

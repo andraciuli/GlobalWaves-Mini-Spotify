@@ -102,6 +102,10 @@ public class User implements UserVisitable, Observer {
     @Getter
     private ArrayList<Artist> artists;
     private static final int TOP_LIMIT = 5;
+    @Getter
+    private int loadTime;
+    @Getter
+    private int searchedTime;
 
     /**
      * Instantiates a new User.
@@ -237,6 +241,11 @@ public class User implements UserVisitable, Observer {
         return commandInput.getUsername() + " subscribed to " + user.select + " successfully.";
     }
 
+    @Override
+    public void update(final ObjectNode notification) {
+        notifications.add(notification);
+    }
+
     /**
      * Retrieves the notifications for the user and clears the notification list.
      *
@@ -254,7 +263,6 @@ public class User implements UserVisitable, Observer {
      * Updates the list of songs that the user has listened to based on the current playing song.
      */
     public void updateListenSongs() {
-        Player player = getPlayerInstance(this);
         PlayerSource source = Player.getPlayerSourceInstance(player);
 
         String songName = new String();
@@ -320,7 +328,6 @@ public class User implements UserVisitable, Observer {
      * on the current playing podcast episode.
      */
     public void updateListenPodcast() {
-        Player player = getPlayerInstance(this);
         PlayerSource source = Player.getPlayerSourceInstance(player);
 
         String name = new String();
@@ -377,6 +384,10 @@ public class User implements UserVisitable, Observer {
             // Update listeners for the podcast and host
             for (Host host : Admin.getHosts()) {
                 if (podcastOnListen.getOwner().equals(host.getName())) {
+                    if (!host.containsListener(this.username)) {
+                        host.incrementListens();
+                        host.getListeners().add(new UserWrapp(this));
+                    }
                     boolean hostContainsEpisode = false;
                     for (EpisodeWrapp episode : host.getListenedEpisodes()) {
                         if (episode.getEpisode().getName().equals(nameEpisode)) {
@@ -387,6 +398,44 @@ public class User implements UserVisitable, Observer {
                     }
                     if (!hostContainsEpisode) {
                         host.getListenedEpisodes().add(new EpisodeWrapp(episodeOnListen));
+                    }
+                }
+            }
+            if ((searchedTime - loadTime) > getPlayerStats(this).getRemainedTime()) {
+                int index = podcastOnListen.getEpisodes().indexOf(episodeOnListen);
+                if (index >= 1) {
+                    Episode previousEpisode = podcastOnListen.getEpisodes().get(index - 1);
+                    for (EpisodeWrapp episode : listenedEpisodes) {
+                        if (previousEpisode.getName().equals(episode.getEpisode().getName())) {
+                            episode.incrementListens();
+                            break;
+                        }
+                    }
+                    incrementHostListens(previousEpisode.getName(), podcastOnListen);
+                }
+            }
+        }
+    }
+
+    /**
+     * Increments the listen count for a specific episode of a podcast associated with a given host.
+     *
+     * This method iterates through the list of hosts managed by the Admin class, finds the host
+     * who owns the podcast currently being listened to, and increments the listen count for the
+     * specified episode if it is found in the host's listened episodes list.
+     *
+     * @param episodeName The name of the episode for which the listen count should be incremented.
+     * @param podcastOnListen The Podcast object representing the podcast currently
+     *                        being listened to.
+     */
+    public void incrementHostListens(final String episodeName, final Podcast podcastOnListen) {
+        for (Host host : Admin.getHosts()) {
+            if (podcastOnListen.getOwner().equals(host.getName())) {
+                for (EpisodeWrapp episode : host.getListenedEpisodes()) {
+                    if (episode.getEpisode().getName()
+                            .equals(episodeName)) {
+                        episode.incrementListens();
+                        break;
                     }
                 }
             }
@@ -481,8 +530,11 @@ public class User implements UserVisitable, Observer {
      * @param type    the type
      * @return the array list
      */
-    public ArrayList<String> search(final Filters filters, final String type) {
+    public ArrayList<String> search(final Filters filters, final String type,
+                                    final CommandInput commandInput) {
         searchBar.clearSelection();
+        searchedTime = commandInput.getTimestamp();
+        updateListenPodcast();
         player.stop();
 
         lastSearched = true;
@@ -538,11 +590,11 @@ public class User implements UserVisitable, Observer {
      *
      * @return the string
      */
-    public String load() {
+    public String load(final CommandInput commandInput) {
         if (searchBar.getLastSelected() == null) {
             return "Please select a source before attempting to load.";
         }
-
+        loadTime = commandInput.getTimestamp();
 
         if (!searchBar.getLastSearchType().equals("song")
                 && ((AudioCollection) searchBar.getLastSelected())
@@ -552,7 +604,6 @@ public class User implements UserVisitable, Observer {
 
         player.setSource(searchBar.getLastSelected(), searchBar.getLastSearchType());
         updateListenSongs();
-        updateListenPodcast();
         searchBar.clearSelection();
 
         player.pause();
@@ -926,8 +977,4 @@ public class User implements UserVisitable, Observer {
         player.simulatePlayer(time);
     }
 
-    @Override
-    public void update(final ObjectNode notification) {
-        notifications.add(notification);
-    }
 }
